@@ -1,0 +1,96 @@
+# Kazaa v1.3.3 uninstall script
+# BFU - Brute Force Uninstaller
+OptionStatusOn
+OptionSetStatus Initializing
+OptionUseBitBucket
+
+SystemMsgBox This will uninstall Kazaa 1.3.3 and all of its bundled software.\nPlease close Kazaa before continuing.\n\nNote that your 'My Shared Folder' will be deleted unless you changed its location from the default setting!
+
+# Processes
+OptionSetStatus Stopping Kazaa and associated programs
+ProcessKill \WHAgent.exe
+ProcessKill \Save.exe|1
+ProcessKill \rundll32.exe|1
+ProcessKill \Kazaa.exe
+OptionPauseNow 2000
+
+# Folders
+OptionSetStatus Deleting Kazaa and associated files
+FolderDelete c:\BDE
+FolderDelete %PROGRAMFILES%\BDE
+FolderDelete %PROGRAMFILES%\Kazaa
+FolderDelete %PROGRAMFILES%\NewDotNet
+FolderDelete %PROGRAMFILES%\Save
+FolderDelete %PROGRAMFILES%\webHancer
+FolderDelete %WINDIR%\bde
+FolderDelete %PROGRAMS%\Programs\Kazaa
+FolderDelete %SYSDIR%\AdCache
+FolderDelete %TEMPDIR%\Brilliant
+FolderDelete %TEMPDIR%\webhancer
+
+# Files not covered by above
+FileDelete %WINDIR%\NDNuninstal5_20.exe
+FileDelete %WINDIR%\newdotnet3_23.dll
+FileDelete %WINDIR%\webhdll.dll
+FileDelete %WINDIR%\whAgent.inf
+FileDelete %WINDIR%\whInstaller.exe
+FileDelete %WINDIR%\whInstaller.ini
+FileDelete %QUICKLAUNCH%\Kazaa Media Desktop.lnk
+FileDelete %DESKTOP%\FREE BonziBUDDY.lnk
+FileDelete %DESKTOP%\Kazaa Media Desktop.lnk
+FileDelete %DESKTOP%\My Shared Folder.lnk
+FileDelete %SYSDIR%\bdedata2.dll
+FileDelete %SYSDIR%\bdedownloader.dll
+FileDelete %SYSDIR%\bdefdi.dll
+FileDelete %SYSDIR%\bdeinsta.dll
+FileDelete %SYSDIR%\bdeinsta2.dll
+FileDelete %SYSDIR%\cd_clint.dll
+FileDelete %SYSDIR%\cd_htm.dll
+#FileDelete %SYSDIR%\sporder.dll - seems not to be malware
+FileDelete %TEMPDIR%\kmdb.html
+
+# Registry keys
+OptionSetStatus Deleting Kazaa and associated Registry keys
+RegDeleteKey HKCU\Software\Brilliant Digital Entertainment
+RegDeleteKey HKCU\Software\Cydoor
+RegDeleteKey HKCU\Software\Cydoor Services
+RegDeleteKey HKCU\Software\Kazaa
+RegDeleteKey HKCR\BDESmartInstaller.BDESmartInstaller
+RegDeleteKey HKCR\BDESmartInstaller.BDESmartInstaller.1
+RegDeleteKey HKCR\CLSID\{4A2AACF3-ADF6-11D5-98A9-00E018981B9E}
+RegDeleteKey HKCR\CLSID\{67925165-C4B6-11D2-B9C6-0000E84F59A6}
+RegDeleteKey HKCR\CLSID\{c900b400-cdfe-11d3-976a-00e02913a9e0}
+RegDeleteKey HKCR\Interface\{67925164-C4B6-11D2-B9C6-0000E84F59A6}
+RegDeleteKey HKCR\Interface\{C89435B0-CDFE-11D3-976A-00E02913A9E0}
+RegDeleteKey HKCR\Tldctl2.URLLink
+RegDeleteKey HKCR\Tldctl2.URLLink.1
+RegDeleteKey HKCR\TypeLib\{82FC7881-AACC-11D2-B9C6-0000E842E40A}
+RegDeleteKey HKCR\TypeLib\{C8CB3870-CDFE-11D3-976A-00E02913A9E0}
+RegDeleteKey HKCR\WhIeHelperObj.WhIeHelperObj
+RegDeleteKey HKCR\WhIeHelperObj.WhIeHelperObj.1
+RegDeleteKey HKCR\WUSN.1
+RegDeleteKey HKLM\Software\Brilliant Digital Entertainment
+RegDeleteKey HKLM\Software\Cydoor
+RegDeleteKey HKLM\Software\KAZAA
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\Browser Helper Objects\{4A2AACF3-ADF6-11D5-98A9-00E018981B9E}
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\Browser Helper Objects\{c900b400-cdfe-11d3-976a-00e02913a9e0}
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\AdSupport_253
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\bdeplayer
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\KaZaA Media Desktop_is1
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\New.net
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\SaveNow
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\webHancer Agent
+RegDeleteKey HKLM\Software\New.net
+RegDeleteKey HKLM\Software\webHancer
+RegDeleteKey HKLM\Software\WhenU
+
+# Registry values not covered by above
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|KAZAA
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|New.net Startup
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|webHancer Agent
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|WhenUSave
+
+# Winsock hooks
+OptionSetStatus Removing New.Net/WebHancer Winsock hooks
+WinsockKillNamespace New.net Name Space Provider
+WinsockKillProtocol webHancer

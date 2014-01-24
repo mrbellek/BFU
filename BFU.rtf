@@ -1,0 +1,484 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1043{\fonttbl{\f0\fswiss\fcharset0 Arial;}}
+{\*\generator Msftedit 5.41.15.1507;}\viewkind4\uc1\pard\b\f0\fs40 BFU - Brute Force Uninstaller\par
+\b0\fs20 Written by Merijn - http://www.merijn.org/\par
+Last updated: Feb 19, 2008\par
+\par
+\ul Description\ulnone\par
+BFU is a scripting program that can execute a series of preset commands like a Windows batch file, aimed at uninstalled programs that are hard to remove, uninstall improperly or simply unwanted. There are available options to let the script execution manage files, folders, ini files, Registry keys and values, hosts file content, processes loaded in memory, dll files, NT services and Winsock components. Message boxes can be displayed, the system can be rebooted, the Recycle Bin can be used for delete operations and programs can be started. Options for the script itself include unloading the shell (i.e. killing the Explorer.exe process), pausing between commands (or all commands) and setting a minimum required version number for BFU itself to be able to run the script. BFU itself does not store anything on the system and is uninstalled simply by deleting it.\par
+\par
+A script can be activated by either downloading the script file (.bfu) and loading it into BFU by means of the 'select scriptfile' button, OR by downloading it directly into BFU with the 'open script url' button. When using the latter option, the scriptfile will be downloaded by BFU and saved on the system before loading it.\par
+\par
+\ul Command syntax\ulnone\par
+The format of the command is very simple, but has a few notes:\par
+<Command> <arg1>|<arg2>|<arg3>\par
+\par
+The <Command> is one of the list below, the amount and format (text, number) of arguments depends on the command.\par
+\par
+The pipes (|) between the arguments are needed, as they determine how BFU interprets which argument represents what.\par
+For example, if the SystemRun command is used to launch a program without any parameters but it still needs to be hidden from the user's view (default is 1, show it), the command would be:\par
+\par
+SystemRun c:\\windows\\notepad.exe||0\par
+\par
+The second argument is empty, but the third is not. The second pipe must not be omitted, or the 0 would be interpreted as parameter for Notepad and the window would be shown.\par
+\par
+Whenever brackets are used in the 'Syntax' lines below, this means any of the items seperated by the pipes between them can be used. The brackets should not be used in scripts. For example, when the syntax for a command is \i DllRegister c:\\file.dll|[0|1]\i0 , this means either \i DllRegister c:\\file.dll|0\i0  or \i DllRegister c:\\file.dll|1\i0  can be used.\par
+\par
+\ul Writing scripts\ulnone\par
+The 'open script' dialog filters on *.bfu. A .bfu script file is plaintext, commands are not case-sensitive (though parameters can be, case depending). The order of commands can be anything, but it is recommended to put script options at the top and a system restart at the end. Any lines that do not start with a recognized command are ignored, but for readability comments should be easily recognizable, for example by starting them with a certain character (', #, //, /*, <!--, whatever you like).\par
+\par
+The root keys for the Registry commands are abbreviated:\par
+HKCR: HKEY_CLASSES_ROOT\par
+HKCU: HKEY_CURRENT_USER\par
+HKLM: HKEY_LOCAL_MACHINE\par
+HKUS: HKEY_USERS\par
+HKCC: HKEY_CURRENT_CONFIG\par
+HKPD: HKEY_PERFORMANCE_DATA\par
+HKDD: HKEY_DYNAMIC_DATA\par
+\par
+Available aliases for system folders are:\par
+%SYSTEMDRIVE%\tab\tab - Drive containing the Windows folder (e.g. 'c:')\par
+%WINDIR%\tab\tab\tab - Windows folder\par
+%SYSDIR%\tab\tab\tab - Windows system folder\par
+%TEMPDIR%\tab\tab\tab - Temporary files folder\par
+%PROGRAMFILES%\tab\tab - Program Files\par
+%DESKTOP%\tab\tab\tab - Desktop\par
+%MYDOCUMENTS%\tab\tab - My Documents\par
+%FAVORITES%\tab\tab - Favorites\par
+%STARTMENU%\tab\tab - Start Menu root\par
+%STARTUP%\tab\tab\tab - Startup folder in Start Menu\par
+%PROGRAMS%\tab\tab - Programs folder in Start Menu\par
+%APPDATA%\tab\tab\tab - Application Data\par
+%QUICKLAUNCH%\tab\tab - QuickLaunch folder in Application Data folder\par
+%ALLUSERSDESKTOP%\tab - All Users (Common) Desktop\par
+%ALLUSERSFAVORITES%\tab - All Users (Common) Favorites\par
+%ALLUSERSSTARTMENU%\tab - All Users (Common) Start Menu\par
+%ALLUSERSSTARTUP%\tab - All Users (Common) Startup folder in Start Menu\par
+%ALLUSERSPROGRAMS%\tab - All Users (Common) Programs folder in Start Menu\par
+%ALLUSERSAPPDATA%\tab - All Users (Common) Application Data\par
+%COMPUTERNAME%\tab\tab - Name of the system\par
+%USERNAME%\tab\tab - Currently logged on username\par
+\par
+Additional system aliases such as %USERPROFILE% are also expanded, if they exist on the system.\par
+\par
+An option for validating the CRC32 checksum of a script is available that will display the checksum and ask for confirmation. This checksum can be provided with the script (not IN the script of course) on a webpage or as part of the script's filename for example. This can be used to verify the script file was downloaded correctly.\par
+\par
+\par
+\i\fs28 Available commands\par
+\i0\fs20 NB: all commands are independent of Windows version, unless specifically noted.\par
+\par
+\ul OptionUnloadShell\ulnone\par
+Kills the Explorer shell before executing further commands. Be warned, on Windows NT4, 2000 and XP, Explorer will automatically reload after a few seconds.\par
+Syntax: \i OptionUnloadShell\i0\par
+\par
+\ul OptionUseRecycleBin\ulnone\par
+Makes all FileDelete and FolderDelete commands move items into the Recycle Bin instead of deleting directly.\par
+Syntax: \i OptionUseRecycleBin\i0\par
+\par
+\ul OptionPauseBetweenCmds\ulnone\par
+Waits the specified amounts of time, in milliseconds, between commands. Not recommended to use together with OptionUnloadShell.\par
+Syntax: \i OptionPauseBetweenCmds 500\i0\par
+\par
+\ul OptionPauseNow\ulnone\par
+Waits the specified amounts of time, in milliseconds, once only\par
+Syntax: \i OptionPauseNow 500\i0 .\par
+\par
+\ul OptionBFUMinVersion\ulnone\par
+Will not execute the script if the specified version is newer than the current version.\par
+Syntax: \i OptionBFUMinVersion 1000000 \i0 (meaning 1.00.0000)\par
+\par
+\ul OptionCalcScriptCRC32\ulnone\par
+This will make BFU calculate the CRC32 checksum of the script file loaded and prompt the user for confirmation before continuing.\par
+Syntax: \i OptionCalcScriptCRC32\i0\par
+\par
+\ul OptionSetStatus\ulnone\par
+Sets the current script status, instead of the default status (which displays the current script line). Can be used wherever in a script.\par
+Syntax: \i OptionSetStatus Cleaning up Registry...\i0\par
+\par
+\ul OptionOnDeleteFailUseReboot\ulnone\par
+If this option is set, if deleting a file using FileDelete fails, BFU will make Windows attempt to delete the file on a reboot. Note that when a file is set for deletion on reboot, it will not be moved to the Recycle Bin regardless of the OptionUseRecycleBin option.\par
+Syntax: \i OptionOnDeleteFailUseReboot\i0\par
+\par
+\ul OptionRunSilent\ulnone\par
+With this option set, BFU will run completely hidden (no window visible) and not display message boxes, excluding the 'reboot?' confirmation dialog. \par
+Syntax: \i OptionRunSilent\i0\par
+\par
+\ul OptionSetBFURunOnReboot\ulnone\par
+Set a BFU script to run when the system is next restarted. The RunOnceEx key is used for this. It is recommended to use the OptionRunSilent option together with this option, so BFU auto-exits on script completion. If a full path to the script is not provided, BFU assumes the script is in the same folder as the BFU.exe file.\par
+Syntax: \i OptionSetBFURunOnReboot onreboot.bfu\i0\par
+\par
+\ul OptionShowLog\ulnone\par
+Forces the checkmark 'show log after script ends' on.\par
+Syntax: \i OptionShowLog\i0\par
+\par
+\ul OptionSaveLog\ulnone\par
+Saves the logfile to disk after the script completes. This commands supports aliases.\par
+Syntax: \i OptionSaveLog c:\\test\\test.log\i0\par
+\par
+\ul OptionBFUExit\ulnone\par
+Quits BFU without executing any further commands. No user intervention required.\par
+Syntax: \i OptionBFUExit\i0\par
+\par
+--------------------------------------\par
+\par
+\ul SystemMsgBox\ulnone\par
+Shows an information messagebox with text in it. The code '\\n' will be replaced with a carriage return.\par
+Syntax: \i SystemMsgBox text to display\i0\par
+\par
+\ul SystemRun\par
+\ulnone Runs a program. The boolean at the end specifies if the program should be hidden (0) or shown (1, default).\par
+Syntax: \i SystemRun c:|program.exe|parameters|[0|1]\i0\par
+\par
+\ul SystemResetWebSettings\ulnone\par
+Resets the IE Web Settings to the default values.\par
+Syntax: \i SystemResetWebSettings\i0\par
+\par
+\ul SystemEmptyRecycleBin\par
+\ulnone Empties the Recycle Bin (on all drives) without user intervention.\par
+Syntax: \i SystemEmptyRecycleBin\i0\par
+\par
+\ul SystemEmptyInternetCache\ulnone\par
+Empties the Internet Explorer cache.\par
+Syntax: \i SystemEmptyInternetCache\i0\par
+\par
+\ul SystemEmptyTempFolder\ulnone\par
+Empties the content of the current user's temp folder, as well as the Windows\\temp folder.\par
+Syntax: \i SystemEmptyTempFolder\i0\par
+\ul\par
+SystemRestart\ulnone\par
+Shows the 'system settings have changed. reboot?' message box. Text can be added to the default. The boolean at the and specifies if apps that are not responding should be ended forcefully (1) or not (0, default).\par
+Syntax: \i SystemRestart extra text|[0|1]\i0\par
+\par
+\ul SystemRestartIfNeeded\ulnone\par
+The same command as above, but is only processed if a system restart is needed, i.e. if 1) a Winsock LSP has been removed, 2) a Service has been deleted, 3) a file has been marked for deletion on reboot, or 4) a BFU script has been setup to run at the next reboot.\par
+Syntax: \i SystemRestartIfNeeded extra text|[0|1]\i0\par
+\par
+--------------------------------------\par
+\par
+\ul DllRegister\ulnone\par
+Registers the dll by calling it's DllRegisterServer export. The boolean specifies whether the call should be done silent (1, default) or not (0).\par
+Syntax: \i DllRegister c:\\file.dll|[0|1]\par
+\i0\par
+\ul DllUnregister\ulnone\par
+Unregisters a dll by calling it's DllUnregisterServer export. The boolean specifies whether the call should be done silent (1, default) or not (0).\par
+Syntax: \i DllUnregister c:\\file.dll|[0|1]\par
+\i0\par
+--------------------------------------\par
+\par
+\ul FileCreate\ulnone\par
+Creates a blank file, if it doesn't exist.\par
+Syntax: \i FileCreate c:\\file.ext\par
+\i0\par
+\ul FileDelete\ulnone\par
+Deletes a file, if it exists. See also OptionUseRecycleBin. Wildcards supported.\par
+Synta: \i FileDelete c:\\file.ext\i0\par
+\par
+\ul FileRename\ulnone\par
+Renames a file. Both paths must be specified, and both paths must be the same.\par
+Syntax: \i FileRename c:\\file.ext|c:\\newfile.ext\i0\par
+\par
+\ul FileMove\ulnone\par
+Moves a file. Note: conditional commands similar to those for FileDelete are available for FileMove: FileMoveIfMD5Match, FileMoveIfSHA1Match, FileMoveIfMD2Match, FileMoveIfMD4Match, FileMoveIfCRC32Match, FileMoveIfContainsText and FileMoveIfContainsHex. See below at FileDeleteIf... for examples.\par
+Syntax: \i FileMove c:\\file.ext|c:\\windows\i0\par
+Syntax: \i FileMoveIfMD5Match c:\\file.ext|A1D7304A87FC3093150F5E3CC7B0F338\i0\par
+Syntax: \i FileMoveIfContainsText c:\\file.ext|c:\\windows|UPX v1.20!\i0\par
+\par
+\ul FileClear\ulnone\par
+Clears a file from all of its contents.\par
+Syntax: \i FileClear c:\\file.ext\i0\par
+\par
+\ul FileSetAttributes\ulnone\par
+Sets the specified attributes on a file. R = read-only, A = archive, S = system, H = hidden. 'Compressed' attribute not supported.\par
+Syntax: \i FileSetAttributes c:\\file.ext|RA\i0\par
+\par
+\ul FileDeleteOnReboot\ulnone\par
+Marks the file for deletion when the system is next restarted. Wildcards supported.\par
+Syntax: \i FileDeleteOnReboot c:\\file.ext\i0\par
+\par
+\ul FileDeleteIfMD5Match\ulnone\par
+Calculates the MD5 checksum of the given file and matches it against the given MD5 checksum. If the two checksums match, the file is deleted. Wildcards supported.\par
+Syntax: \i FileDeleteIfMD5Match c:\\file.ext|A1D7304A87FC3093150F5E3CC7B0F338\i0\par
+\par
+\ul FileDeleteIfSHA1Match\ulnone\par
+Calculates the SHA1 checksum of the given file and matches it against the given SHA1 checksum. If the two checksums match, the file is deleted. Wildcards supported.\par
+Syntax: \i FileDeleteIfSHA1Match c:\\file.ext|DA39A3EE5E6B4B0D3255BFEF95601890AFD80709\i0\par
+\par
+\ul FileDeleteIfMD2Match\ulnone\par
+Calculates the MD2 checksum of the given file and matches it against the given MD2 checksum. If the two checksums match, the file is deleted. Wildcards supported.\par
+Syntax: \i FileDeleteIfMD2Match c:\\file.ext|8350E5A3E24C153DF2275C9F80692773\i0\par
+\par
+\ul FileDeleteIfMD4Match\ulnone\par
+Calculates the MD4 checksum of the given file and matches it against the given MD4 checksum. If the two checksums match, the file is deleted. Wildcards supported.\par
+Syntax: \i FileDeleteIfMD4Match c:\\file.ext|31D6CFE0D16AE931B73C59D7E0C089C0\i0\par
+\par
+\ul FileDeleteIfCRC32Match\ulnone\par
+Calculates the CRC32 checksum of the given file and matches it against the given CRC32 checksum. If the two checksums match, the file is deleted. Wildcards supported.\par
+Syntax: \i FileDeleteIfCRC32Match c:\\file.ext|CD044977\i0\par
+\par
+\ul FileDeleteIfContainsText\ulnone\par
+Searches the file for a given string of text. If the string is found, the file is deleted. Wildcards supported.\par
+Syntax: \i FileDeleteIfContainsText c:\\file.ext|UPX v1.20!\i0\par
+\par
+\ul FileDeleteIfContainsHex\ulnone\par
+Searches the file for a given (comma-seperated) hexadecimal sequence and deletes the file if found. Similar to the above command, but useful if non-displayable high-ASCII (or low-ASCII) characters are in the target string. Wildcards supported.\par
+Syntax: \i FileDeleteIfContainsHex c:\\file.ext|0A,DE,AD,BE,EF\i0\par
+\par
+\ul FileWrite\ulnone\par
+Writes the specified text to a file. This cannot be binary data, only string data. The boolean specifies of the file should be cleared first (overwrite, 1) or not (append, 0, default).\par
+Syntax: \i FileWrite c:\\file.ext|blablabla|[0|1]\i0\par
+\par
+--------------------------------------\par
+\par
+\ul FolderCreate\ulnone\par
+Create a folder, if it doesn't already exist.\par
+Syntax: \i FolderCreate c:\\dummy\i0\par
+\par
+\ul FolderDelete\ulnone\par
+Deletes a folder and all of its contents. See also OptionUseRecycleBin.\par
+Syntax: \i FolderDelete c:\\dummy\i0\par
+\par
+\ul FolderRename\ulnone\par
+Renames a folder, if it exists. Both paths must be specified completely, and both parent paths must be the same.\par
+Syntax: \i FolderRename c:\\dummy|c:\\newfolder\i0\par
+\par
+\ul FolderMove\ulnone\par
+Moves a folder, if it exists.\par
+Syntax: \i FolderMove c:\\dummy|c:\\windows\i0\par
+\par
+\ul FolderSetAttributes\ulnone\par
+Sets the specified attributes on a folder. Does not affect files or folders in it. R = read-only, A = archive, S = system, H = hidden. 'Compressed' attribute not supported.\par
+Syntax: \i FolderSetAttributes c:\\dummy|SA\i0\par
+\par
+\ul FolderClear\ulnone\par
+Deletes all contents from a folder. If OptionOnDeleteFailUseReboot is set, locked files/folders are deleted on system reboot.\par
+Syntax: \i FolderClear c:\\dummy\i0\par
+--------------------------------------\par
+\par
+\ul IniSetValue\ulnone\par
+Writes the specified data to a value in a .ini file. The four arguments are: file, section in inifile, valuename, data to set.\par
+Syntax: \i IniSetValue c:\\file.ini|settings|data|dummy\i0\par
+\par
+\ul IniDeleteValue\ulnone\par
+Deletes a value from a .ini file, as well as its data. The arguments are: file, section in inifile, valuename.\par
+Syntax: \i IniDeleteValue c:\\file.ini|settings|data\i0\par
+\par
+\ul IniDeleteFromValue\ulnone\par
+Deletes any occurrences of specified data from the existing data in a value in a .ini file. The arguments are: file, section in inifile, valuename, data to delete.\par
+Syntax: \i IniDeleteFromValue c:\\file.ini|settings|data|a\i0\par
+\par
+\ul IniClearValue\ulnone\par
+Deletes all data from a value in a .ini file, but leaves the value itself behind. The arguments are: file, section in inifile, valuename.\par
+Syntax: \i IniClearValue c:\\file.ini|settings|data\i0\par
+\par
+\ul IniCreateSection\ulnone\par
+Create a blank section in a .ini file, if it doesn't already exist.\par
+Syntax: \i IniCreateSection c:\\file.ini|settings\i0\par
+\par
+--------------------------------------\par
+\par
+\ul RegCreateKey\ulnone\par
+Create a blank Registry key. If the key already exists, nothing is changed.\par
+Syntax: \i RegCreateKey HKLM\\Software\\Test\i0\par
+\par
+\ul RegDeleteKey\ulnone\par
+Deletes a Registry key and all its subkeys and values.\par
+Syntax: \i RegDeleteKey HKLM\\Software\\Test\i0\par
+\par
+\ul RegDeleteKeyIfNameContainsText\ulnone\par
+Deletes a Registry key and all its subkeys and values, if the key name contains a given string. Note that the mask (second argument) applies to the subkeys of the given key. The below example would delete HKLM\\Software\\Test\\substring1 but not HKLM\\Software\\Test\\subkey1.\par
+Syntax: \i RegDeleteKeyIfNameContainsText HKLM\\Software\\Test|sub*|string\i0\par
+\par
+\ul RegDeleteKeyIfNameContainsHex\ulnone\par
+Deletes a Registry key and all its subkeys and values, if the key name matches a given mask, in hexadecimal. Note that the mask applies to the subkeys of the given key. The below example would delete HKLM\\Software\\Test\\substring1 but not HKLM\\Software\\Test\\subkey1.\par
+Syntax: \i RegDeleteKeyIfNameContainsHex HKLM\\Software\\Test|sub*|73,74,72,69,6E,67\i0\par
+\par
+\ul RegSetStringValue\ulnone\par
+Creates/sets a Registry string value. If the specified Registry key doesn't exist, it is created first.\par
+Syntax: \i RegSetStringValue HKLM\\Software\\Test|stringvalue|data\i0\par
+\par
+\ul RegSetDwordValue\ulnone\par
+Creates/sets a Registry dword value. If the specified Registry key doesn't exist, it is created first.\par
+Syntax: \i RegSetDwordValue HKLM\\Software\\Test|dwordvalue|1024\i0\par
+\par
+\ul RegSetBinaryValue\ulnone\par
+Creates/sets a Registry binary value. The binary data must be specified in comma-seperated hexadecimal. If the specified Registry key doesn't exist, it is created first.\par
+Syntax: \i RegSetBinaryValue HKLM\\Software\\Test|binaryvalue|04,F0,59,A3,BB\i0\par
+\par
+\ul RegSetMultiValue\ulnone\par
+Creates/sets a Registry multistring value. If the specified Registry key doesn't exist, it is created first. Use \\0 to denote NULLs in the value data.\par
+Syntax: \i RegSetMultiValue HKLM\\Software\\Test|multi|test\\0some more\i0\par
+\par
+\ul RegSetExpandValue\ulnone\par
+Creates/sets a Registry value with unexpanded environment references. If the specified Registry key doesn't exist, it is created first. Use double percent signs (%%) to enclose environment references instead of single ones.\par
+Syntax: \i RegSetExpandValue HKLM\\Software\\Test\\expand|%%userprofile%%\\test\i0\par
+\par
+\ul RegDelValue\ulnone\par
+Deletes a Registry value of any type.\par
+Syntax: \i RegDelValue HKLM\\Software\\Test|value\i0\par
+\par
+\ul RegDelFromValue\ulnone\par
+Deletes any occurences of the specified text from a Registry string value.\par
+Syntax: \i RegDelFromValue HKLM\\Software\\Test|value|datatodelete\i0\par
+\par
+\ul RegRenameValue\ulnone\par
+Renames a Registry value (string, dword or binary).\par
+Syntax: \i RegRenameValue HKLM\\Software\\Test|value|newvalue\i0\par
+\par
+\ul RegDelValueIfDataContainsText\ulnone\par
+Deletes a Registry value of type REG_SZ (string), but only if its data contains a given text string. The last optional parameter determines if the text string is case-sensitive or not (default 0, not case-sensitive).\par
+Syntax: \i RegDelValueIfDataContainsText HKLM\\Software\\Test|value|text|[0|1]\i0\par
+\par
+\ul RegDelValueIfDataContainsHex\ulnone\par
+Deletes a Registry value of type REG_SZ (string), but only if its data contains a given text string in hexadecimal. The last optional parameter determines if the text string is case-sensitive or not (default 0, not case-sensitive).\par
+Syntax: \i RegDelValueIfDataContainsText HKLM\\Software\\Test|value|04,F0,59,A3,BB|[0|1]\i0\par
+\par
+\ul RegDelValueIfNameContainsText\ulnone\par
+Deletes any Registry values of type REG_SZ (string) in a given Registry key if their name contains the given text string. The last optional parameter determines if the text string is case-sensitive or not (default 0, not case-sensitive).\par
+\i Syntax: RegDelValueIfNameContainsText HKLM\\Software\\Test|value|text\i0\par
+\par
+\ul RegDelValueIfNameContainsHex\par
+\ulnone Deletes any Registry values of type REG_SZ (string) in a given Registry key if their name contains the given text string in hexadecimal. The last optional parameter determines if the text string is case-sensitive or not (default 0, not case-sensitive).\par
+\i Syntax: RegDelValueIfNameContainsHex HKLM\\Software\\Test|value|04,F0,59,A3,BB\i0\par
+\par
+\ul RegResetPermissions\ulnone\par
+Resets the permissions on a Registry key back to the default, if possible.\par
+Syntax: \i RegResetPermissions HKLM\\Software\\Test\i0\par
+\par
+--------------------------------------\par
+\par
+\ul ProcessKill\ulnone\par
+Terminates a process or all processes matching a full or partial string. The boolean specifies if all matches (1) or only the first (0, default) must be killed. When using partial paths or filenames, it is recommended to use the last backslash in the path as a dummy delimiter, to prevent \i ProcessKill svc.exe\i0  from stopping \i navawsvc.exe,\i0  for example. Wildcards supported.\par
+Syntax: \i ProcessKill \\notepad.exe|[0|1]\i0\par
+\par
+\ul ProcessKillIfMD5Match\ulnone\par
+Terminates a process or all processes matching a full or partial string and an MD5 checksum. The boolean specifies if all matches (1) or only the first (0, default) must be killed. Wildcards supported.\par
+Syntax: \i ProcessKillIfMD5Match \\notep*|F8771112BF40968D3C2CFAA585A3D2B6|[0|1]\i0\par
+\par
+\ul ProcessKillIfSHA1Match\ulnone\par
+Terminates a process or all processes matching a full or partial string and an SHA1 checksum. The boolean specifies if all matches (1) or only the first (0, default) must be killed. Wildcards supported.\par
+Syntax: \i ProcessKillIfSHA1Match \\notep*|DA39A3EE5E6B4B0D3255BFEF95601890AFD80709|[0|1]\i0\par
+\par
+\ul ProcessKillIfMD2Match\ulnone\par
+Terminates a process or all processes matching a full or partial string and an MD2 checksum. The boolean specifies if all matches (1) or only the first (0, default) must be killed. Wildcards supported.\par
+Syntax: \i ProcessKillIfMD2Match \\notep*|8350E5A3E24C153DF2275C9F80692773|[0|1]\i0\par
+\par
+\ul ProcessKillIfMD4Match\ulnone\par
+Terminates a process or all processes matching a full or partial string and an MD4 checksum. The boolean specifies if all matches (1) or only the first (0, default) must be killed. Wildcards supported.\par
+Syntax: \i ProcessKillIfMD4Match \\notep*|31D6CFE0D16AE931B73C59D7E0C089C0|[0|1]\i0\par
+\par
+\ul ProcessKillIfCRC32Match\ulnone\par
+Terminates a process or all processes matching a full or partial string and an CRC32 checksum. The boolean specifies if all matches (1) or only the first (0, default) must be killed. Wildcards supported.\par
+Syntax: \i ProcessKillIfCRC32Match \\notep*|5A1F559B|[0|1]\i0\par
+\par
+\ul ProcessKillIfContainsText\ulnone\par
+Terminates a process or all processes matching a full or partial string and containing a text string in the file. The boolean specifies if all matches (1) or only the first (0, default) must be killed. Wildcards supported.\par
+Syntax: \i ProcessKillIfContainsText \\notep*|Shell.notepad|[0|1]\i0\par
+\par
+\ul ProcessKillIfContainsHex\ulnone\par
+Terminates a process or all processes matching a full or partial string and containing a hexadecimal sequence in the file. The boolean specifies if all matches (1) or only the first (0, default) must be killed. Wildcards supported.\par
+Syntax: \i ProcessKillIfContainsHex \\notep*|53,68,65,6C,6C,2E,6E,6F,74,65,70,61,64|[0|1]\i0\par
+\par
+\ul ProcessSuspend\ulnone\par
+Suspends a process or all processes matching a full or partial string. The optional boolean at the end specifies if all matches (1) or only the first one (0, default) must be suspended. Wildcards supported. Note that conditional commands similar to those for ProcessKill are available, i.e. ProcessSuspendIfMD5Match, ProcessSuspendIfSHA1Match, ProcessSuspendIfMD2Match, ProcessSuspendIfMD4Match,  ProcessSuspendIfCRC32Match, ProcessSuspendIfContainsText, ProcessSuspendIfContainsHex.\par
+Syntax: \i ProcessSuspendIf \\notep*|[0|1]\i0\par
+\par
+\ul ProcessResume\ulnone\par
+Resumes a process or all processes matching a full or partial string. The optional boolean at the end specifies if all matches (1) or only the first one (0, default) must be resumed. Wildcards supported. Note that conditional commands similar to those for ProcessKill are available, i.e. ProcessResumeIfMD5Match, ProcessResumeIfSHA1Match, ProcessResumeIfMD2Match, ProcessResumeIfMD4Match, ProcessResumeIfCRC32Match, ProcessResumeIfContainsText, ProcessResumeIfContainsHex.\par
+Syntax: \i ProcessResumeIf \\notep*|[0|1]\i0\par
+\par
+--------------------------------------\par
+\par
+Note: the following group of commands applies to Windows Services, available only in Windows NT4, Windows 2000, Windows XP, Windows 2003 and newer.\par
+\par
+\ul ServiceStart\ulnone\par
+Starts a service, by full name (displayname) or short name (internal name).\par
+Syntax: \i ServiceStart ServiceName\i0\par
+\par
+\ul ServiceStop\ulnone\par
+Stops a service, by full name (displayname) or short name (internal name).\par
+Syntax: \i ServiceStop ServiceName\i0\par
+\par
+\ul ServiceDisable\ulnone\par
+Disables a service, by full name (displayname) or short name (internal name). A service does not need to be stopped first for this to work.\par
+Syntax: \i ServiceDisable ServiceName\i0\par
+\par
+\ul ServiceEnable\ulnone\par
+Enables a service (set to 'Start Automatically'), by full name (displayname) or short name (internal name).\par
+Sytnax: \i ServiceEnable ServiceName\i0\par
+\par
+\ul ServiceDelete\ulnone\par
+Deletes a service, by full name (displayname) or short name (internal name). It is recommended to reboot after this, since Windows may not be able to delete a service that is in use until a restart. A deleted service can not be recovered! Use with caution!!\par
+Syntax: \i ServiceDelete ServiceName\i0\par
+\par
+--------------------------------------\par
+\par
+\ul HostsFileReset\ulnone\par
+Clears the contents of the hosts file and resets it to the factory default. A custom hosts file location is also reset for Windows NT4, 2000 and XP.\par
+Syntax: \i HostsFileReset\i0\par
+\par
+\ul HostsFileAddLine\ulnone\par
+Adds a line to the end of the hosts file.\par
+Syntax: \i HostsFileAddLine 127.0.0.1\tab localhost\i0\par
+\par
+\ul HostsFileDelLine\ulnone\par
+Deletes a specific line from the hosts file. All occurrances are deleted.\par
+Syntax: \i HostsFileDelLine 127.0.0.1\tab auto.search.msn.com\i0\par
+\par
+\ul HostsFileDisableLine\ulnone\par
+Disables a specific line from the hosts file by putting a '#' in front of it. All occurrances are disabled.\par
+Syntax: \i HostsFileDisableLine 127.0.0.1\tab auto.search.msn.com\i0\par
+\par
+\ul HostsFileEnableLine\ulnone\par
+Enables a specific line from the hosts file by removing the '#' in front of it. All occurrances are enabled.\par
+Syntax: \i HostsFileEnableLine #127.0.0.1\tab localhost\i0\par
+\par
+--------------------------------------\par
+\par
+\ul WinsockKillProtocol\ulnone\par
+Deletes all matching Winsock protocols (e.g. Msspi, Webhancer) from the Winsock stack. It is recommended (but not always needed) to reboot after doing this.\par
+Syntax: \i WinsockKillProtocol msspi\i0\par
+\par
+\ul WinsockKillNameSpace\ulnone\par
+Deletes all matching Winsock namespaces (e.g. New.Net) from the Winsock stack. It is recommended (but not always needed) to reboot after doing this.\par
+Syntax: \i WinsockKillNameSpace newdotnet\i0\par
+\par
+--------------------------------------\par
+\par
+\ul LogIfFileExists\ulnone\par
+Writes a line to the log window if the file exists. Wildcards supported.\par
+Syntax: \i LogIfFileExists c:\\dummy\\test.txt\par
+\i0\par
+\ul LogIfFileContainsText\ulnone\par
+Writes a line to the log window if the file contains the given text. Wildcards suppored.\par
+Syntax: \i LogIfFileContainsText c:\\dummy\\test.txt|data\par
+\i0\par
+\ul LogIfFileContainsHex\ulnone\par
+Writes a line to the log window if the file contains the given hexadecimal string. Wildcards suppored.\par
+Syntax: \i LogIfFileContainsHex c:\\dummy\\test.txt|53,68,65,6C,6C,2E,6E,6F,74,65,70,61,64\par
+\i0\par
+\ul LogIfFolderExists\ulnone\par
+Writes a line to the log window if the folder exists. Wildcards supported.\par
+Syntax: \i LogIfFolderExists c:\\dummy\par
+\i0\par
+\ul LogIfRegKeyExists\par
+\ulnone Writes a line to the log window if the Registry key exists. Wildcards supported.\par
+Syntax: \i LogIfRegKeyExists HKLM\\Software\\Test\par
+\i0\par
+\ul LogIfRegValExists\ulnone\par
+Writes a line to the log window if the Registry value exists. Wildcards supported.\par
+Syntax: \i LogIfRegValExists HKLM\\Software\\Test|some value\par
+\i0\par
+\ul LogIfRegValContainsText\par
+\ulnone Writes a line to the log window if the Registry value data contains the given text. Wildcards supported.\par
+Syntax: \i LogIfRegValContainsText HKLM\\Software\\Test|some value|data\i0\par
+\par
+\ul LogIfRegValContainsHex\ulnone\par
+Writes a line to the log window if the Registry value data contains the given hexadecimal string. Wildcards supported.\par
+Syntax: \i LogIfRegValContainsHex HKLM\\Software\\Test|some value|04,F0,59,A3,BB\i0\par
+\par
+--------------------------------------\par
+\par
+Disclaimer: This software is provided as-is. Use at your own risk! I am not responsible for any damage done to any computer system by this program.\par
+This software is freeware and may be used by anyone, and may not sold, modified or reverse-engineered.\par
+\par
+}
+ 

@@ -1,0 +1,144 @@
+# Kazaa v1.3.4 uninstall script
+# BFU - Brute Force Uninstaller
+
+OptionStatusOn
+OptionSetStatus Initializing
+OptionUseBitBucket
+
+SystemMsgBox This will uninstall Kazaa 1.3.4 and all of its bundled software.\nPlease close Kazaa before continuing.\n\nNote that your 'My Shared Folder' will be deleted unless you changed its location from the default setting!
+
+# Processes
+OptionSetStatus Stopping Kazaa and associated programs
+
+ProcessKill \rundll32.exe|1
+ProcessKill \SaveNow.exe|1
+ProcessKill \kazaa.exe
+OptionPauseNow 2000
+
+# Folders
+OptionSetStatus Deleting Kazaa and associated files
+FolderDelete %PROGRAMFILES%\CommonName
+FolderDelete %PROGRAMFILES%\Kazaa
+FolderDelete %PROGRAMFILES%\onflow
+FolderDelete %PROGRAMFILES%\SaveNow
+FolderDelete %WINDIR%\BDE
+FolderDelete %PROGRAMS%\CommonName Toolbar 3.1
+FolderDelete %PROGRAMS%\Kazaa
+FolderDelete %WINDIR%\Zupdate
+FolderDelete %TEMPDIR%\Brilliant
+
+# Files not covered by above
+FileDelete  %PROGRAMFILES%\Internet Explorer\plugins\nponflow.dll
+FileDelete  %PROGRAMFILES%\Opera\Plugins\nponflow.dll
+FileDelete  %WINDIR%\newdotnet3_23.dll
+FileDelete  %QUICKLAUNCH%\Kazaa Media Desktop.lnk
+FileDelete  %DESKTOP%\FREE BonziBUDDY.lnk
+FileDelete  %DESKTOP%\Kazaa Media Desktop.lnk
+FileDelete  %DESKTOP%\My Shared Folder.lnk
+FileDelete  %SYSDIR%\bdedata2.dll
+FileDelete  %SYSDIR%\bdedownloader.dll
+FileDelete  %SYSDIR%\bdefdi.dll
+FileDelete  %SYSDIR%\bdeinsta2.dll
+FileDelete  %SYSDIR%\bdeinstall.exe
+FileDelete  %SYSDIR%\bdesecureinstall.cab
+FileDelete  %SYSDIR%\bdesecureinstall.exe
+FileDelete  %SYSDIR%\bdeverify.dll
+FileDelete  %SYSDIR%\bdeverify.exe
+FileDelete  %SYSDIR%\cd_clint.dll
+FileDelete  %SYSDIR%\cd_htm.dll
+FileDelete  %SYSDIR%\chktrust.exe
+FileDelete  %SYSDIR%\ofrg.dll
+FileDelete  %TEMPDIR%\kmdb.html
+FileDelete  %TEMPDIR%\of_stub_ins_w_2071.exe
+
+# Registry keys
+OptionSetStatus Deleting Kazaa and associated Registry keys
+RegDeleteKey HKCU\Software\Brilliant Digital Entertainment
+RegDeleteKey HKCU\Software\CommonName
+RegDeleteKey HKCU\Software\Cydoor
+RegDeleteKey HKCU\Software\Cydoor Services
+RegDeleteKey HKCU\Software\KAzaa
+RegDeleteKey HKCU\Software\Microsoft\Internet Explorer\MenuExt\Add A Page Note
+RegDeleteKey HKCU\Software\Microsoft\Internet Explorer\MenuExt\Bookmark This Page
+RegDeleteKey HKCU\Software\Microsoft\Internet Explorer\MenuExt\Email This Link
+RegDeleteKey HKCU\Software\Microsoft\Internet Explorer\MenuExt\Search using CommonName
+RegDeleteKey HKCR\.b3ds
+RegDeleteKey HKCR\AppID\{AE6DDEB6-5683-4F5D-AD53-0F93B02A3F93}
+RegDeleteKey HKCR\AppID\CNForm.EXE
+RegDeleteKey HKCR\b3ds_auto_file
+RegDeleteKey HKCR\BabeIE.AgentIE
+RegDeleteKey HKCR\BabeIE.AgentIE.1
+RegDeleteKey HKCR\BDESmartInstaller.BDESmartInstaller
+RegDeleteKey HKCR\BDESmartInstaller.BDESmartInstaller.1
+RegDeleteKey HKCR\CLSID\{0CEF79D8-D373-11D3-A7D3-00062962BF17}
+RegDeleteKey HKCR\CLSID\{0E5C2CC6-72DA-4342-94B3-76B47A1C6D14}
+RegDeleteKey HKCR\CLSID\{139D88E5-C372-469D-B4C5-1FE00852AB9B}
+RegDeleteKey HKCR\CLSID\{1E1B2879-88FF-11D2-8D96-D7ACAC95951F}
+RegDeleteKey HKCR\CLSID\{4F9CA775-2C5F-4E2A-B157-CB440564F7F4}
+RegDeleteKey HKCR\CLSID\{67925165-C4B6-11D2-B9C6-0000E84F59A6}
+RegDeleteKey HKCR\CLSID\{882F36A6-5178-477B-A00A-2E1D3B7E8E80}
+RegDeleteKey HKCR\CLSID\{A3E3F04C-F98C-4295-95EF-41C57425B077}
+RegDeleteKey HKCR\CLSID\{A6475E6B-3C2E-4B1F-82FD-8F1C0B1D8AD0}
+RegDeleteKey HKCR\CLSID\{ECB81A15-365C-4953-827F-6E848634C1F0}
+RegDeleteKey HKCR\CNBar.Activater
+RegDeleteKey HKCR\CNBar.Activater.1
+RegDeleteKey HKCR\CNBar.BandSink
+RegDeleteKey HKCR\CNBar.BandSink.1
+RegDeleteKey HKCR\CNBar.CNBarBand
+RegDeleteKey HKCR\CNBar.CNBarBand.1
+RegDeleteKey HKCR\CNBar.ExplorerBar
+RegDeleteKey HKCR\CNBar.ExplorerBar.1
+RegDeleteKey HKCR\CNForm.CNBarHelper
+RegDeleteKey HKCR\CNForm.CNBarHelper.1
+RegDeleteKey HKCR\CNForm.History
+RegDeleteKey HKCR\CNForm.History.1
+RegDeleteKey HKCR\Favorite.FavoriteMan
+RegDeleteKey HKCR\Favorite.FavoriteMan.1
+RegDeleteKey HKCR\IEOnflow.IEOnflow1
+RegDeleteKey HKCR\IEOnflow.IEOnflow1.7
+RegDeleteKey HKCR\Interface\{1E1B2878-88FF-11D2-8D96-D7ACAC95951F}
+RegDeleteKey HKCR\Interface\{4F476E6B-1ECA-4A3B-845A-505D8892DA1A}
+RegDeleteKey HKCR\Interface\{53B1B977-193E-4A9F-B9FC-E1DCC24016A1}
+RegDeleteKey HKCR\Interface\{64809B75-D8C3-4052-A7AD-6A3ECC39218E}
+RegDeleteKey HKCR\Interface\{67925164-C4B6-11D2-B9C6-0000E84F59A6}
+RegDeleteKey HKCR\Interface\{99908473-1135-4009-BE4F-32B921F86ED9}
+RegDeleteKey HKCR\Interface\{A7FE5E20-9866-4C49-B5ED-3991954A2ACD}
+RegDeleteKey HKCR\Interface\{FB68CC40-C725-491A-AAC3-F37DDE794EDB}
+RegDeleteKey HKCR\TypeLib\{0CEF79CB-D373-11D3-A7D3-00062962BF17}
+RegDeleteKey HKCR\TypeLib\{541A3704-4320-4E2D-9371-E4A4C9803191}
+RegDeleteKey HKCR\TypeLib\{82FC7881-AACC-11D2-B9C6-0000E842E40A}
+RegDeleteKey HKCR\TypeLib\{AC04DC43-28E9-4746-9164-C200A04B8921}
+RegDeleteKey HKCR\TypeLib\{D879D743-E2CC-4161-8034-2234203681C9}
+RegDeleteKey HKCR\TypeLib\{DA5E961F-F519-403C-9744-0D4376B1B0B5}
+RegDeleteKey HKLM\Software\Brilliant Digital Entertainment
+RegDeleteKey HKLM\Software\CommonName
+RegDeleteKey HKLM\Software\Cydoor
+RegDeleteKey HKLM\Software\KAZAA
+RegDeleteKey HKLM\Software\Microsoft\Internet Explorer\AdvancedOptions\CommonName
+RegDeleteKey HKLM\Software\Microsoft\Internet Explorer\Plugins\Extension\.ofb
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\Browser Helper Objects\{139D88E5-C372-469D-B4C5-1FE00852AB9B}
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\Browser Helper Objects\{1E1B2879-88FF-11D2-8D96-D7ACAC95951F}
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\Browser Helper Objects\{A6475E6B-3C2E-4B1F-82FD-8F1C0B1D8AD0}
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\bdeplayer
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\CommonName Toolbar 3.1_is1
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\KaZaA Media Desktop_is1
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\New.net
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Onflow
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\SaveNow
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\Zupdate
+RegDeleteKey HKLM\Software\New.net
+RegDeleteKey HKLM\Software\Onflow
+RegDeleteKey HKLM\Software\WhenU
+RegDeleteKey HKLM\Software\Zupdate
+
+# Registry values not covered by above
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|KAZAA
+RegDelValue HKLM\Software\Microsoft\Internet Explorer\Toolbar|{A3E3F04C-F98C-4295-95EF-41C57425B077}
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|New.net Startup
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|SaveNow
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|Zupdate
+
+# Winsock hooks
+OptionSetStatus Removing New.Net/CommonName Winsock hooks
+WinsockKillNamespace New.net Name Space Provider
+WinsockKillProtocol CommonName

@@ -1,0 +1,57 @@
+# AgentACK.bfu
+OptionOnDeleteFailUseReboot
+
+ProcessKill \Win24DLL.exe|1
+ProcessKill \Festas.exe|1
+
+OptionSetStatus Cleaning the Registry....
+
+RegDelValue HKCU\software\microsoft\windows\currentversion\policies\system|DisableRegistryTools
+RegDelValue HKCU\software\microsoft\windows\currentversion\policies\system|DisableTaskMgr
+RegDelValue HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System|DisableCMD
+RegDelValue HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System|EnableLUA
+RegDeleteKey HKCU\Software\Policies\Microsoft\Windows\System
+RegDeleteKey HKCU\Software\Kazaa
+
+RegDelValueIfDataContainsText HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run|MsnMsgs|Win24DLL.exe
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts 
+
+RegDelValue HKLM\SYSTEM\CurrentControlSet\Services\lanmanserver\Shares|Sacanagem
+
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\APVXDWIN.EXE
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\AVLITE.EXE
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\LUALL.EXE
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\Nmain.exe
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\ashAvast.exe
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avgcc.exe
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avginet.exe
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avgw.exe
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\avp.exe
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\mmc.exe
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\msconfig.exe
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\nod32kui.exe
+
+RegSetStringValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\Hidden|Text|@shell32.dll,-30499
+RegSetStringValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\Hidden|Type|Group
+RegSetStringValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\Hidden|HelpID|"shell.hlp#51131"
+RegSetExpandValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\Hidden|Bitmap|%%SystemRoot%%\system32\SHELL32.dll,4
+
+
+OptionSetStatus Deleting Files and Folder....
+
+FileDelete %WINDIR%\Festas.exe
+FileDelete %WINDIR%\Festas.zip
+FileDelete %SYSDIR%\Win24DLL.exe
+FileDelete %SYSDIR%\GroupPolicy\Machine\Scripts\scripts.ini
+FileDelete %SYSDIR%\GroupPolicy\Machine\Scripts\Shutdown\Script.vbs
+FileDelete %SYSDIR%\autorun.inf
+FileDelete %SYSDIR%\autorun2.inf
+
+FileDelete %SYSDIR%\GroupPolicy\gpt.ini
+
+OptionPauseBetweenCmds 250
+
+FolderClear %SYSTEMDRIVE%\Documents and Settings\Sistema
+FolderClear %SYSDIR%\Sys
+FolderDelete %SYSTEMDRIVE%\Documents and Settings\Sistema
+FolderDelete %SYSDIR%\Sys

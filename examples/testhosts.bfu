@@ -1,0 +1,8 @@
+OptionShowLog
+OptionSaveLog c:\windows\temp\test.log
+FileSetAttributes c:\windows\system32\drivers\etc\hosts|
+FileClear c:\windows\system32\drivers\etc\hosts
+FileSetAttributes c:\windows\system32\drivers\etc\hosts|RS
+FileSetAttributes c:\windows\hosts|
+FileClear c:\windows\hosts
+FileSetAttributes c:\windows\hosts|RS

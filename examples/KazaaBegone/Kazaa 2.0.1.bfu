@@ -1,0 +1,110 @@
+# Kazaa v2.0.1 uninstall script
+# BFU - Brute Force Uninstaller
+
+OptionStatusOn
+OptionSetStatus Initializing
+OptionUseBitBucket
+
+SystemMsgBox This will uninstall Kazaa 2.0.1 and all of its bundled software.\nPlease close Kazaa before continuing.\n\nNote that your 'My Shared Folder' will be deleted unless you changed its location from the default setting!
+
+# Processes
+OptionSetStatus Stopping Kazaa and associated programs
+ProcessKill \SaveNow.exe|1
+ProcessKill \PGMonitor.exe|1
+ProcessKill \rundll32.exe|1
+ProcessKill \WebInstall.exe|1
+ProcessKill \kazaa.exe
+OptionPauseNow 2000
+
+# Folders
+OptionSetStatus Deleting Kazaa and associated files
+FolderDelete %PROGRAMFILES%\DelFin
+FolderDelete %PROGRAMFILES%\FirstLook
+FolderDelete %PROGRAMFILES%\InstallShield Installation Information\{9D74D7BA-566D-4260-89FE-6670706CCA94}
+FolderDelete %PROGRAMFILES%\Kazaa
+FolderDelete %PROGRAMFILES%\NewDotNet
+FolderDelete %PROGRAMFILES%\SaveNow
+FolderDelete %WINDIR%\BDE
+FolderDelete %PROGRAMS%\DelFin Media Viewer
+FolderDelete %PROGRAMS%\Kazaa Media Desktop 
+
+# Files not covered by above
+FileDelete %WINDIR%\DirectTVIcon.ico
+FileDelete %WINDIR%\earnmoney.ico
+FileDelete %WINDIR%\NDNuninstall4_50.exe
+FileDelete %WINDIR%\netflix.ico
+FileDelete %WINDIR%\newdotnet3_36.dll
+FileDelete %WINDIR%\readme.ico
+FileDelete %WINDIR%\Readme.txt
+FileDelete %WINDIR%\tiscli_it_2.ico
+FileDelete %QUICKLAUNCH%\Launch Kazaa Media Desktop.lnk
+FileDelete %DESKTOP%\Kazaa Media Desktop.lnk
+FileDelete %DESKTOP%\Kazaa Promotions.url
+FileDelete %DESKTOP%\Kazaa Shop.url
+FileDelete %DESKTOP%\My Shared Folder.lnk
+FileDelete %SYSDIR%\bdedata2.dll
+FileDelete %SYSDIR%\bdedownloader.dll
+FileDelete %SYSDIR%\bdefdi.dll
+FileDelete %SYSDIR%\bdeinsta25.dll
+FileDelete %SYSDIR%\cd_clint.dll
+FileDelete %SYSDIR%\cd_htm.dll
+
+# Registry keys
+OptionSetStatus Deleting Kazaa and associated Registry keys
+RegDeleteKey HKCU\Software\Brilliant Digital Entertainment
+RegDeleteKey HKCU\Software\Cydoor
+RegDeleteKey HKCU\Software\Cydoor Services
+RegDeleteKey HKCU\Software\DelFin
+RegDeleteKey HKCU\Software\DownloadWare
+RegDeleteKey HKCU\Software\FirstLook
+RegDeleteKey HKCU\Software\Kazaa
+RegDeleteKey HKCU\Software\WebInstall
+RegDeleteKey HKCR\BDESmartInstaller25.BDESmartInstaller25
+RegDeleteKey HKCR\BDESmartInstaller25.BDESmartInstaller25.1
+RegDeleteKey HKCR\CLSID\{3EEC42B5-FB94-40D3-A588-BB54B383A7CB}
+RegDeleteKey HKCR\CLSID\{4A2AACF3-ADF6-11D5-98A9-00E018981B9E}
+RegDeleteKey HKCR\Interface\{0E67BBC9-18CB-4B22-BACD-687CDF6387B6}
+RegDeleteKey HKCR\Interface\{16344B6E-52E1-4BBC-AA79-E08B10B7BAB9}
+RegDeleteKey HKCR\Interface\{1ED19966-1493-4539-B9F5-97A6556CE8F8}
+RegDeleteKey HKCR\Interface\{21D98482-146C-4EBF-AF1E-B04395110005}
+RegDeleteKey HKCR\Interface\{4C5C8B37-CCB7-11D5-ABEC-00B0D0238DF5}
+RegDeleteKey HKCR\Interface\{4E26CAD5-1B59-4D1D-9063-2D91314C9E45}
+RegDeleteKey HKCR\Interface\{67925164-C4B6-11D2-B9C6-0000E84F59A6}
+RegDeleteKey HKCR\Interface\{6FFDEFD7-3EC4-4E5A-9EFC-AD04E14A9934}
+RegDeleteKey HKCR\Interface\{7B288F47-79AB-43A8-8494-D9F4D5985B29}
+RegDeleteKey HKCR\Interface\{B4D3EAE5-8A3A-4376-8B65-6A81293EDB1D}
+RegDeleteKey HKCR\Interface\{C4143914-2238-40F8-A74C-67C4B8ACB27A}
+RegDeleteKey HKCR\Interface\{D2A3A842-FBA3-49D4-8806-7734716364A2}
+RegDeleteKey HKCR\Interface\{E3CD7A86-04E4-4B47-88E8-3EE03A3DEE56}
+RegDeleteKey HKCR\Interface\{ECBE1E54-3649-4287-9888-D9FB133CAE0D}
+RegDeleteKey HKCR\Tldctl2.URLLink
+RegDeleteKey HKCR\Tldctl2.URLLink.1
+RegDeleteKey HKCR\TypeLib\{82FC7881-AACC-11D2-B9C6-0000E842E40A}
+RegDeleteKey HKCR\TypeLib\{94636247-BC39-4B8B-A728-2D1FBEBFA76A}
+RegDeleteKey HKLM\Software\Brilliant Digital Entertainment
+RegDeleteKey HKLM\Software\DelFin
+RegDeleteKey HKLM\Software\DownloadWare
+RegDeleteKey HKLM\Software\KAZAA
+#RegDeleteKey HKLM\Software\Microsoft\DownloadManager - seems Windows XP related
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\App Paths\D:
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\Browser Helper Objects\{4A2AACF3-ADF6-11D5-98A9-00E018981B9E}
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\{9D74D7BA-566D-4260-89FE-6670706CCA94}
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\bdeplayer
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\DelFin Media Viewer
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\FirstLook
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\New.net
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\SaveNow
+RegDeleteKey HKLM\Software\New.net
+RegDeleteKey HKLM\Software\Sharman Networks Ltd
+RegDeleteKey HKLM\Software\WhenU
+
+# Registry values not covered by above
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|b3dupdate
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|KAZAA
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|New.net Startup
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|PromulGate
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|SaveNow
+
+# Winsock hooks
+OptionSetStatus Removing New.Net Winsock hooks
+WinsockKillNamespace New.net Name Space Provider

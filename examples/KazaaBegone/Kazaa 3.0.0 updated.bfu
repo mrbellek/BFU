@@ -1,0 +1,367 @@
+# Kazaa 3.0.0 uninstall script
+# BFU - Brute Force Uninstaller
+# created on 09/03/2005
+# updated on 18/07/2006
+
+OptionStatusOn
+OptionSetStatus Initializing
+OptionUseBitBucket
+
+SystemMsgBox This will uninstall Kazaa 3.0.0 and all of its bundled software.\nPlease close Kazaa, Explorer and Internet Explorer before continuing.\n\nNote that your 'My Shared Folder' will be deleted unless you changed its location from the default setting!
+
+# Processes
+OptionSetStatus Stopping Kazaa and associated programs
+ProcessKill \p2p networking.exe|1
+ProcessKill \download manager\asm.exe|1
+ProcessKill \fsg_4203.exe|1
+ProcessKill \points manager.exe|1
+ProcessKill \gmt.exe|1
+ProcessKill \cmesys.exe|1
+ProcessKill \kazaa.exe
+
+ProcessKill \tboninst.exe|1
+ProcessKill \tbon.exe|1
+ProcessKill instafinderk_inst.exe|1
+ProcessKill \altnet\setup.exe|1
+ProcessKill \semanticinsight.exe|1
+ProcessKill \download manager\adm4005.exe|1
+ProcessKill \bulldownload.exe|1
+ProcessKill \bullguard.exe|1
+ProcessKill \bullguardupdate.exe|1
+ProcessKill \bgnewsui.exe|1
+OptionPauseNow 2000
+
+# Folders
+OptionSetStatus Deleting Kazaa and associated files
+FolderDelete %ALLUSERSPROGRAMS%\GAIN Publishing
+FolderDelete %PROGRAMS%\GAIN Publishing
+FolderDelete %TEMPDIR%\ADMCache
+FolderDelete %PROGRAMS%\Altnet
+FolderDelete %PROGRAMS%\Kazaa
+FolderDelete C:\Program Files\Altnet
+FolderDelete %PROGRAMFILES%\Altnet
+FolderDelete %PROGRAMFILES%\Common Files\CMEII
+FolderDelete %PROGRAMFILES%\Common Files\GMT
+FolderDelete %PROGRAMFILES%\INSTAFINK
+FolderDelete %PROGRAMFILES%\InstallShield Installation Information\{38C76428-6C9C-4CC6-B747-3AB6A4770225}
+FolderDelete %PROGRAMFILES%\Kazaa
+FolderDelete %PROGRAMFILES%\MyWay
+FolderDelete %WINDIR%\cdmxtras
+FolderDelete %SYSDIR%\P2P Networking
+FolderDelete %WINDIR%\Temp\Adware
+FolderDelete %WINDIR%\Temp\Altnet
+FolderDelete %WINDIR%\Temp\BullGuard
+
+FolderDelete %SYSTEMDRIVE%\DBBackup
+FolderDelete %ALLUSERSAPPDATA%\BullGuard
+FolderDelete %APPDATA%\BullGuard
+FolderDelete %APPDATA%\Macromedia\Flash Player
+FolderDelete %PROGRAMFILES%\Need2Find
+FolderDelete %PROGRAMFILES%\RXToolBar
+FolderDelete %SYSDIR%\AdCache
+FolderDelete %SYSDIR%\cache329
+FolderDelete %ALLUSERSPROGRAMS%\BullGuard
+FolderDelete %PROGRAMFILES%\BullGuard Software
+
+# Files not covered by above
+FileDelete %ALLUSERSSTARTUP%\GStartup.lnk
+FileDelete %STARTUP%\GStartup.lnk
+FileDelete %QUICKLAUNCH%\Launch Kazaa.lnk
+FileDelete %DESKTOP%\Kazaa.lnk
+FileDelete %DESKTOP%\My Shared Folder.lnk
+FileDelete %DESKTOP%\Play Poker Now!.lnk
+FileDelete %DESKTOP%\Your Free Casino Chips!.lnk
+FileDelete %TEMPDIR%\asmfiles.cab
+FileDelete %TEMPDIR%\bundle.inf
+FileDelete %TEMPDIR%\mySetp.exe
+FileDelete %TEMPDIR%\p2psetup.exe
+FileDelete %WINDIR%\GatorPdpSetup.log
+FileDelete %WINDIR%\smdat32a.sys
+FileDelete %WINDIR%\smdat32m.sys
+FileDelete %WINDIR%\Downloaded Program Files\WebP2PInstaller.dll
+FileDelete %WINDIR%\FONTS\acrsec.fon
+FileDelete %WINDIR%\FONTS\acrsecB.fon
+FileDelete %WINDIR%\FONTS\acrsecI.fon
+FileDelete %SYSDIR%\P2P Networking v126.cpl
+
+FileDelete %TEMPDIR%\~FD*.tmp
+FileDelete %TEMPDIR%\873101.tmp
+FileDelete %TEMPDIR%\c981B9.tmp
+FileDelete %TEMPDIR%\kmd*.tmp
+FileDelete %TEMPDIR%\np.m3u
+FileDelete %WINDIR%\tboninst.cfg
+# FileDelete %SYSDIR%\CatRoot2\tmp.edb - no idea what this is
+FileDelete %WINDIR%\Temp\msxml_cabinstall.exe
+FileDelete %ALLUSERSDESKTOP%\BullGuard.lnk
+FileDelete %DESKTOP%\BullGuard.exe
+FileDelete %WINDIR%\Installer\541ae.msi
+FileDelete %SYSDIR%\client_cc.dll
+FileDelete %SYSDIR%\lccl.dll
+FileDelete %SYSDIR%\drivers\Teefer.sys
+FileDelete %SYSDIR%\drivers\wg3n.sys
+FileDelete %SYSDIR%\drivers\wpsdrvnt.sys
+
+# Registry keys
+OptionSetStatus Deleting Kazaa and associated Registry keys
+RegDeleteKey HKCU\Software\INSTAFINK
+RegDeleteKey HKCU\Software\Kazaa
+RegDeleteKey HKCU\Software\P2P Networking
+RegDeleteKey HKCR\ADM.ADM
+RegDeleteKey HKCR\ADM.ADM.1
+RegDeleteKey HKCR\ADM25.ADM25
+RegDeleteKey HKCR\ADM25.ADM25.1
+RegDeleteKey HKCR\ADM4.ADM4
+RegDeleteKey HKCR\ADM4.ADM4.1
+RegDeleteKey HKCR\AppID\{8B0FEF15-54DC-49F5-8377-8172DE975F75}
+RegDeleteKey HKCR\AppID\{99A8E2B2-3405-4C0D-9110-131C14CAAF62}
+RegDeleteKey HKCR\AppID\adm.EXE
+RegDeleteKey HKCR\AppID\Altnet Signing Module.EXE
+RegDeleteKey HKCR\bpnrepel
+RegDeleteKey HKCR\CLSID\{014DA6C9-189F-421a-88CD-07CFE51CFF10}
+RegDeleteKey HKCR\CLSID\{014DA6CD-189F-421a-88CD-07CFE51CFF10}
+RegDeleteKey HKCR\CLSID\{0494D0D1-F8E0-41ad-92A3-14154ECE70AC}
+RegDeleteKey HKCR\CLSID\{0494D0D2-F8E0-41ad-92A3-14154ECE70AC}
+RegDeleteKey HKCR\CLSID\{0494D0D3-F8E0-41ad-92A3-14154ECE70AC}
+RegDeleteKey HKCR\CLSID\{0494D0D5-F8E0-41ad-92A3-14154ECE70AC}
+RegDeleteKey HKCR\CLSID\{0494D0D7-F8E0-41ad-92A3-14154ECE70AC}
+RegDeleteKey HKCR\CLSID\{0494D0D9-F8E0-41ad-92A3-14154ECE70AC}
+RegDeleteKey HKCR\CLSID\{0494D0DB-F8E0-41ad-92A3-14154ECE70AC}
+RegDeleteKey HKCR\CLSID\{0494D0DE-F8E0-41ad-92A3-14154ECE70AC}
+RegDeleteKey HKCR\CLSID\{1D3BCE37-7834-4579-8169-E67681420A98}
+RegDeleteKey HKCR\CLSID\{1D6711C8-7154-40BB-8380-3DEA45B69CBF}
+RegDeleteKey HKCR\CLSID\{21FFB6C0-0DA1-11D5-A9D5-00500413153C}
+RegDeleteKey HKCR\CLSID\{3646C2BD-3554-49CA-8125-44DEEFB881DE}
+RegDeleteKey HKCR\CLSID\{3f4d4f88-0198-4921-b630-957f3eb814e0}
+RegDeleteKey HKCR\CLSID\{4E7BD74F-2B8D-469E-90F0-F66AB581A933}
+RegDeleteKey HKCR\CLSID\{66FC8717-EFA7-4546-8C4A-E224F3A80C76}
+RegDeleteKey HKCR\CLSID\{9BBCF06C-DCD7-495D-80DF-CDD5399D0FF8}
+RegDeleteKey HKCR\CLSID\{C15B7EA2-A360-43E8-A591-5FAEDC7C4E1D}
+RegDeleteKey HKCR\CLSID\{C91E8926-D4BE-4685-99F4-0D996B96BAC0}
+RegDeleteKey HKCR\CLSID\{CC7A6223-3759-4075-8CEA-971F5CFC0ED2}
+RegDeleteKey HKCR\CLSID\{DEF37997-D9C9-4A4B-BF3C-88F99EACEEC2}
+RegDeleteKey HKCR\CLSID\{E813099D-5529-47F4-9B37-4AFAFCB00A43}
+RegDeleteKey HKCR\CLSID\{F4817E4B-04B6-11D3-8862-00C04F72F303}
+RegDeleteKey HKCR\instafink.INSTAFINK
+RegDeleteKey HKCR\Interface\{00345390-4F77-11D3-A908-00105A088FAC}
+RegDeleteKey HKCR\Interface\{0494D0D4-F8E0-41AD-92A3-14154ECE70AC}
+RegDeleteKey HKCR\Interface\{0494D0D6-F8E0-41AD-92A3-14154ECE70AC}
+RegDeleteKey HKCR\Interface\{0494D0DA-F8E0-41AD-92A3-14154ECE70AC}
+RegDeleteKey HKCR\Interface\{0494D0DC-F8E0-41AD-92A3-14154ECE70AC}
+RegDeleteKey HKCR\Interface\{0BA4BA22-2EF0-11D3-88C8-00C04F72F303}
+RegDeleteKey HKCR\Interface\{0C8D0880-1AC4-11D3-A8FF-00105A088FAC}
+RegDeleteKey HKCR\Interface\{0E67BBC9-18CB-4B22-BACD-687CDF6387B6}
+RegDeleteKey HKCR\Interface\{112EB4F0-5A48-11D3-A90A-00105A088FAC}
+RegDeleteKey HKCR\Interface\{1169A235-14D9-4488-8B56-58ECE9C57002}
+RegDeleteKey HKCR\Interface\{16097036-894C-4C00-A61F-93CA0D49A70E}
+RegDeleteKey HKCR\Interface\{16344B6E-52E1-4BBC-AA79-E08B10B7BAB9}
+RegDeleteKey HKCR\Interface\{1B1B8830-C559-11D3-B289-00C04F59FBE9}
+RegDeleteKey HKCR\Interface\{1B540D44-3F61-4394-AE30-25FDC3649405}
+RegDeleteKey HKCR\Interface\{1ED19966-1493-4539-B9F5-97A6556CE8F8}
+RegDeleteKey HKCR\Interface\{1F9922A2-F026-11D2-8822-00C04F72F303}
+RegDeleteKey HKCR\Interface\{21D98482-146C-4EBF-AF1E-B04395110005}
+RegDeleteKey HKCR\Interface\{251753FA-FB3B-11D2-8842-00C04F72F303}
+RegDeleteKey HKCR\Interface\{2583251F-0A04-11D3-886B-00C04F72F303}
+RegDeleteKey HKCR\Interface\{258A3625-183B-4477-AEE2-EA54DF6D878D}
+RegDeleteKey HKCR\Interface\{29E825AA-13BC-457C-806A-D72E4A25B3C5}
+RegDeleteKey HKCR\Interface\{2ED5AF98-9258-45BA-B79B-06625C92F662}
+RegDeleteKey HKCR\Interface\{348440B0-C79A-11D3-B28B-00C04F59FBE9}
+RegDeleteKey HKCR\Interface\{39040274-3D36-11D3-88EE-00C04F72F303}
+RegDeleteKey HKCR\Interface\{3D8B6331-D8B1-11D2-80C5-00104B1F6CEA}
+RegDeleteKey HKCR\Interface\{3D8B6332-D8B1-11D2-80C5-00104B1F6CEA}
+RegDeleteKey HKCR\Interface\{3EDC2C10-66FE-11D3-A90F-00105A088FAC}
+RegDeleteKey HKCR\Interface\{3EE77D8B-40C1-4A2A-9B77-421907F02058}
+RegDeleteKey HKCR\Interface\{44D61997-B7D4-11D2-80BA-00104B1F6CEA}
+RegDeleteKey HKCR\Interface\{4C5C8B37-CCB7-11D5-ABEC-00B0D0238DF5}
+RegDeleteKey HKCR\Interface\{4E26CAD5-1B59-4D1D-9063-2D91314C9E45}
+RegDeleteKey HKCR\Interface\{5469EE67-1493-402F-8E2C-99936C9E4983}
+RegDeleteKey HKCR\Interface\{54DADAB2-28A6-11D3-88BA-00C04F72F303}
+RegDeleteKey HKCR\Interface\{54DADAB3-28A6-11D3-88BA-00C04F72F303}
+RegDeleteKey HKCR\Interface\{61892D50-28EF-11D3-A8FF-00105A088FAC}
+RegDeleteKey HKCR\Interface\{6494206F-23EA-11D3-88B0-00C04F72F303}
+RegDeleteKey HKCR\Interface\{65D37452-0EBB-11D3-887B-00C04F72F303}
+RegDeleteKey HKCR\Interface\{6B15A454-9067-4878-B10E-B9DFFE03049D}
+RegDeleteKey HKCR\Interface\{6FFDEFD7-3EC4-4E5A-9EFC-AD04E14A9934}
+RegDeleteKey HKCR\Interface\{700DC0DD-F409-42E0-9DE5-21EE1A2BA9FD}
+RegDeleteKey HKCR\Interface\{761C8359-55AF-4E7B-9C83-C1A927E0F617}
+RegDeleteKey HKCR\Interface\{787D0980-F63F-462C-86BC-FC23847C70F4}
+RegDeleteKey HKCR\Interface\{7B288F47-79AB-43A8-8494-D9F4D5985B29}
+RegDeleteKey HKCR\Interface\{7BB118F1-6D5B-470E-82D0-AFB042724560}
+RegDeleteKey HKCR\Interface\{7D795704-435D-11D3-88FF-00C04F72F303}
+RegDeleteKey HKCR\Interface\{80FDE82A-2CAA-11D3-88C3-00C04F72F303}
+RegDeleteKey HKCR\Interface\{83755DD1-086B-11D3-8868-00C04F72F303}
+RegDeleteKey HKCR\Interface\{8415DDF9-1C1D-11D3-889D-00C04F72F303}
+RegDeleteKey HKCR\Interface\{8415DE38-1C1D-11D3-889D-00C04F72F303}
+RegDeleteKey HKCR\Interface\{8C3C1B10-E59D-11D2-B40B-00A024B9DDDD}
+RegDeleteKey HKCR\Interface\{8C3C1B11-E59D-11D2-B40B-00A024B9DDDD}
+RegDeleteKey HKCR\Interface\{8C3C1B12-E59D-11D2-B40B-00A024B9DDDD}
+RegDeleteKey HKCR\Interface\{8C3C1B13-E59D-11D2-B40B-00A024B9DDDD}
+RegDeleteKey HKCR\Interface\{8C3C1B14-E59D-11D2-B40B-00A024B9DDDD}
+RegDeleteKey HKCR\Interface\{8C3C1B15-E59D-11D2-B40B-00A024B9DDDD}
+RegDeleteKey HKCR\Interface\{8C3C1B16-E59D-11D2-B40B-00A024B9DDDD}
+RegDeleteKey HKCR\Interface\{91814EBF-B5F0-11D2-80B9-00104B1F6CEA}
+RegDeleteKey HKCR\Interface\{91814EC1-B5F0-11D2-80B9-00104B1F6CEA}
+RegDeleteKey HKCR\Interface\{91814EC3-B5F0-11D2-80B9-00104B1F6CEA}
+RegDeleteKey HKCR\Interface\{91814EC5-B5F0-11D2-80B9-00104B1F6CEA}
+RegDeleteKey HKCR\Interface\{94F4A332-A2AE-11D3-8378-00C04F59FBE9}
+RegDeleteKey HKCR\Interface\{9B697780-DBBC-11D2-80C7-00104B1F6CEA}
+RegDeleteKey HKCR\Interface\{9BD0749C-12DC-4D2B-A4F6-9E52F0F38A6C}
+RegDeleteKey HKCR\Interface\{9CFCFE67-0BB8-43E0-8425-378D0A02ACE4}
+RegDeleteKey HKCR\Interface\{9D4548CE-92FD-4C6C-AE7F-3DBE3BC763D8}
+RegDeleteKey HKCR\Interface\{A36ECFBE-FAAA-417D-9D41-7FEF98FDE554}
+RegDeleteKey HKCR\Interface\{A74C06E4-12DF-4060-9AA7-83CFAA66D604}
+RegDeleteKey HKCR\Interface\{AA7E2060-CB55-11D2-8094-00104B1F9838}
+RegDeleteKey HKCR\Interface\{AA7E2061-CB55-11D2-8094-00104B1F9838}
+RegDeleteKey HKCR\Interface\{AA7E2062-CB55-11D2-8094-00104B1F9838}
+RegDeleteKey HKCR\Interface\{AA7E2064-CB55-11D2-8094-00104B1F9838}
+RegDeleteKey HKCR\Interface\{AA7E2065-CB55-11D2-8094-00104B1F9838}
+RegDeleteKey HKCR\Interface\{AA7E2066-CB55-11D2-8094-00104B1F9838}
+RegDeleteKey HKCR\Interface\{AA7E2067-CB55-11D2-8094-00104B1F9838}
+RegDeleteKey HKCR\Interface\{AA7E2068-CB55-11D2-8094-00104B1F9838}
+RegDeleteKey HKCR\Interface\{AA7E2069-CB55-11D2-8094-00104B1F9838}
+RegDeleteKey HKCR\Interface\{AA7E2084-CB55-11D2-8094-00104B1F9838}
+RegDeleteKey HKCR\Interface\{AD5BC1F0-72D8-44B3-8E3D-8E8FECCE43FB}
+RegDeleteKey HKCR\Interface\{AF57A6F0-4101-11D3-88F6-00C04F72F303}
+RegDeleteKey HKCR\Interface\{AF57A6F1-4101-11D3-88F6-00C04F72F303}
+RegDeleteKey HKCR\Interface\{AFED5DD0-0694-11D4-A934-00105A088FAC}
+RegDeleteKey HKCR\Interface\{B4D3EAE5-8A3A-4376-8B65-6A81293EDB1D}
+RegDeleteKey HKCR\Interface\{B964AF40-4AB7-11D3-A908-00105A088FAC}
+RegDeleteKey HKCR\Interface\{BE6115A1-7DE5-48DC-AD2A-25060E00FCE2}
+RegDeleteKey HKCR\Interface\{C4143914-2238-40F8-A74C-67C4B8ACB27A}
+RegDeleteKey HKCR\Interface\{C4AAC3B1-C547-11D3-B289-00C04F59FBE9}
+RegDeleteKey HKCR\Interface\{C91E8926-D4BE-4685-99F4-0D996B96BAC0}
+RegDeleteKey HKCR\Interface\{CC096170-E2CB-11D2-80C8-00104B1F6CEA}
+RegDeleteKey HKCR\Interface\{CE9B37EC-D243-47A2-83DB-3A8350175193}
+RegDeleteKey HKCR\Interface\{D273D427-57C6-4B12-860F-BBB8195F6E2A}
+RegDeleteKey HKCR\Interface\{D2A3A842-FBA3-49D4-8806-7734716364A2}
+RegDeleteKey HKCR\Interface\{D4FF39B9-1A05-11D3-8896-00C04F72F303}
+RegDeleteKey HKCR\Interface\{D4FF39BB-1A05-11D3-8896-00C04F72F303}
+RegDeleteKey HKCR\Interface\{DAB9BF17-267D-11D3-88B6-00C04F72F303}
+RegDeleteKey HKCR\Interface\{DED5FEEC-225A-11D3-88AA-00C04F72F303}
+RegDeleteKey HKCR\Interface\{E1B9357F-24B9-11D3-88B2-00C04F72F303}
+RegDeleteKey HKCR\Interface\{E3CD7A86-04E4-4B47-88E8-3EE03A3DEE56}
+RegDeleteKey HKCR\Interface\{E79DADC6-18D0-4A2A-831F-D196D41F8438}
+RegDeleteKey HKCR\Interface\{E813099D-5529-47F4-9B37-4AFAFCB00A43}
+RegDeleteKey HKCR\Interface\{ECBE1E54-3649-4287-9888-D9FB133CAE0D}
+RegDeleteKey HKCR\Interface\{F4817E4B-04B6-11D3-8862-00C04F72F303}
+RegDeleteKey HKCR\Interface\{FD42F6D3-7AB1-470C-979B-7996EDC99099}
+RegDeleteKey HKCR\Interface\{FEBEC920-1849-11D3-A8FE-00105A088FAC}
+RegDeleteKey HKCR\JCDE_Stack
+RegDeleteKey HKCR\JCDE_Stack.1
+RegDeleteKey HKCR\magnet
+RegDeleteKey HKCR\MyWayToolBar.NetscapeShutdown
+RegDeleteKey HKCR\MyWayToolBar.NetscapeShutdown.1
+RegDeleteKey HKCR\MyWayToolBar.NetscapeStartup
+RegDeleteKey HKCR\MyWayToolBar.NetscapeStartup.1
+RegDeleteKey HKCR\MyWayToolBar.SettingsPlugin
+RegDeleteKey HKCR\MyWayToolBar.SettingsPlugin.1
+RegDeleteKey HKCR\SigningModule.SigningModule
+RegDeleteKey HKCR\SigningModule.SigningModule.1
+RegDeleteKey HKCR\TypeLib\{0494D0D0-F8E0-41AD-92A3-14154ECE70AC}
+RegDeleteKey HKCR\TypeLib\{5830698F-7FC0-40CD-A453-9A0CAFDF3A64}
+RegDeleteKey HKCR\TypeLib\{676F6D1D-C559-42A9-860B-27C1477B7179}
+RegDeleteKey HKCR\TypeLib\{94636247-BC39-4B8B-A728-2D1FBEBFA76A}
+RegDeleteKey HKCR\TypeLib\{BFF4F684-677E-44F4-8C74-1D575C950E10}
+RegDeleteKey HKCR\TypeLib\{F720B40F-3A38-4B22-B30D-DCF095D42498}
+RegDeleteKey HKCR\WebP2PInstaller.Installer
+RegDeleteKey HKCR\WebP2PInstaller.Installer.1
+RegDeleteKey HKLM\SOFTWARE\ahjjpc
+RegDeleteKey HKLM\SOFTWARE\Altnet
+RegDeleteKey HKLM\SOFTWARE\Gator.com
+RegDeleteKey HKLM\SOFTWARE\Kazaa
+RegDeleteKey HKLM\SOFTWARE\Magnet
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Code Store Database\Distribution Units\{1D6711C8-7154-40BB-8380-3DEA45B69CBF}
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\D:
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{0494D0D1-F8E0-41ad-92A3-14154ECE70AC}
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{4E7BD74F-2B8D-469E-90F0-F66AB581A933}
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{38C76428-6C9C-4CC6-B747-3AB6A4770225}
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\AltnetDM
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\INSTAFINK
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\My Way Speedbar Uninstall
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\P2P Networking
+RegDeleteKey HKLM\SOFTWARE\MyWay
+RegDeleteKey HKLM\SOFTWARE\P2P Networking
+RegDeleteKey HKLM\SOFTWARE\Sharman Networks Ltd
+
+RegDeleteKey HKCU\Software\AppConf
+RegDeleteKey HKCU\Software\Classes\tbonac
+RegDeleteKey HKCU\Software\Microsoft\Internet Explorer\MenuExt\&Search
+RegDeleteKey HKCU\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{25D8BACF-3DE2-4B48-AE22-D659B8D835B0}
+RegDeleteKey HKCU\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{4D1C4E81-A32A-416B-BCDB-33B3EF3617D3}
+RegDeleteKey HKCU\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{4E7BD74F-2B8D-469E-90F0-F66AB581A933}
+RegDeleteKey HKCU\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{59879FA4-4790-461C-A1CC-4EC4DE4CA483}
+RegDeleteKey HKCU\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{D27CDB6E-AE6D-11CF-96B8-444553540000}
+RegDeleteKey HKCU\Software\Need2Find
+RegDeleteKey HKCU\Software\RX ToolBar
+RegDeleteKey HKCU\Software\tbon
+RegDeleteKey HKCR\AppID\{4672FF87-EF31-4E10-9DBF-1FB28571A188}
+RegDeleteKey HKCR\AppID\SemanticInsight.EXE
+RegDeleteKey HKCR\CLSID\{25D8BACF-3DE2-4B48-AE22-D659B8D835B0}
+RegDeleteKey HKCR\CLSID\{2AB289AE-4B90-4281-B2AE-1F4BB034B647}
+RegDeleteKey HKCR\CLSID\{4D1C4E81-A32A-416b-BCDB-33B3EF3617D3}
+RegDeleteKey HKCR\CLSID\{4D1C4E89-A32A-416b-BCDB-33B3EF3617D3}
+RegDeleteKey HKCR\CLSID\{4D1C4E8B-A32A-416b-BCDB-33B3EF3617D3}
+RegDeleteKey HKCR\CLSID\{55B61359-4DB0-4FF4-934E-3B8C0FC707F8}
+RegDeleteKey HKCR\CLSID\{59879FA4-4790-461c-A1CC-4EC4DE4CA483}
+RegDeleteKey HKCR\CLSID\{630D6140-04C5-4db0-B27A-020D766FF09B}
+RegDeleteKey HKCR\CLSID\{B7156514-A76C-4545-9D5B-A4E1D02C7AEC}
+RegDeleteKey HKCR\Interface\{4D1C4E8A-A32A-416B-BCDB-33B3EF3617D3}
+RegDeleteKey HKCR\Interface\{4D1C4E8C-A32A-416B-BCDB-33B3EF3617D3}
+RegDeleteKey HKCR\Interface\{582AB125-1403-42FB-9EFB-198690BA1496}
+RegDeleteKey HKCR\Interface\{8C13987F-041E-4EBE-8784-E6BB9D02E656}
+RegDeleteKey HKCR\Interface\{AC368F5F-6670-4DDE-A1A8-B9C064EA0402}
+RegDeleteKey HKCR\Interface\{FB590D02-0A82-4F44-9FAD-517948DCF4F3}
+RegDeleteKey HKCR\MSIEDe1egate.Application.2
+RegDeleteKey HKCR\Need2FindBar.SettingsPlugin
+RegDeleteKey HKCR\Need2FindBar.SettingsPlugin.1
+RegDeleteKey HKCR\Need2FindBar.ToolbarPlugin
+RegDeleteKey HKCR\Need2FindBar.ToolbarPlugin.1
+RegDeleteKey HKCR\PROTOCOLS\Filter\text/html
+RegDeleteKey HKCR\RXResult.RXResultFilter
+RegDeleteKey HKCR\RXResult.RXResultFilter.1
+RegDeleteKey HKCR\RXResult.RXResultTracker
+RegDeleteKey HKCR\RXResult.RXResultTracker.1
+RegDeleteKey HKCR\RXToolBar.TBInfo
+RegDeleteKey HKCR\RXToolBar.TBInfo.1
+RegDeleteKey HKCR\SemanticInsight.SI4CS
+RegDeleteKey HKCR\SemanticInsight.SI4CS.1
+RegDeleteKey HKCR\SigningModule.SigningModule
+RegDeleteKey HKCR\SigningModule.SigningModule.1
+RegDeleteKey HKCR\tbonac
+RegDeleteKey HKCR\TopSearch.TSLink
+RegDeleteKey HKCR\TopSearch.TSLink.1
+RegDeleteKey HKCR\TypeLib\{05563F82-69A7-40A6-8670-153B635A7EF6}
+RegDeleteKey HKCR\TypeLib\{4D1C4E80-A32A-416B-BCDB-33B3EF3617D3}
+RegDeleteKey HKCR\TypeLib\{66B20295-DC57-42B6-ACDF-52D916E86464}
+RegDeleteKey HKCR\TypeLib\{7F46B8E6-254D-46B4-999F-B37B5BE7A9F5}
+RegDeleteKey HKCR\TypeLib\{EDD3B3E9-3FFD-4836-A6DE-D4A9C473A971}
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Code Store Database\Distribution Units\{1D6711C8-7154-40BB-8380-3DEA45B69CBF}
+RegDeleteKey HKLM\SOFTWARE\Microsoft\DownloadManager
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{4D1C4E81-A32A-416b-BCDB-33B3EF3617D3}
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{59879FA4-4790-461c-A1CC-4EC4DE4CA483}
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Need2FindBar Uninstall
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\RXToolBar
+RegDeleteKey HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\TBON
+RegDeleteKey HKLM\SOFTWARE\Need2Find
+RegDeleteKey HKLM\SOFTWARE\RXResults
+RegDeleteKey HKLM\SOFTWARE\SemanticInsight
+
+# Registry values not covered by above
+RegDelValue HKCU\Software\Microsoft\Windows\CurrentVersion\Runonce|BullguardoptIn
+RegDelValue HKCU\Software\Netscape\Netscape Navigator\Automation Shutdown|MyWayToolBar.NetscapeShutdown.1
+RegDelValue HKCU\Software\Netscape\Netscape Navigator\Automation Startup|MyWayToolBar.NetscapeStartup.1
+RegDelValue HKLM\SOFTWARE\Microsoft\Internet Explorer\Toolbar|{0494D0D9-F8E0-41ad-92A3-14154ECE70AC}
+RegDelValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run|AltnetPointsManager
+RegDelValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run|CMESys
+RegDelValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run|InstaFinderK
+RegDelValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run|KAZAA
+RegDelValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run|P2P Networking
+RegDelValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run|Trickler
+
+RegDelValue HKCU\Software\Microsoft\Internet Explorer\Toolbar\WebBrowser|{25D8BACF-3DE2-4B48-AE22-D659B8D835B0}
+RegDelValue HKCU\Software\Microsoft\Windows\CurrentVersion\Run|tbon
+RegDelValue HKCU\Software\Microsoft\Windows\CurrentVersion\Runonce|RXToolbar
+RegDelValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Extended Properties\{305CA226-D286-468e-B848-2B2E8E697B74} 2|%SystemRoot%\System32\P2P Networking v126.cpl
+RegDelValue HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run|SemanticInsight
+
+RegDelValue HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List|C:\Program Files\Kazaa\kazaa.exe
+RegDelValue HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List|C:\WINDOWS\system32\P2P Networking\P2P Networking.exe

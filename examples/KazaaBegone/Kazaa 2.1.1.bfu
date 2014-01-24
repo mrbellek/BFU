@@ -1,0 +1,58 @@
+# Kazaa v2.1.1 uninstall script
+# BFU - Brute Force Uninstaller
+
+OptionStatusOn
+OptionSetStatus Initializing
+OptionUseBitBucket
+
+SystemMsgBox This will uninstall Kazaa 2.1.1 and all of its bundled software.\nPlease close Kazaa before continuing.\n\nNote that your 'My Shared Folder' will be deleted unless you changed its location from the default setting!
+
+# Processes
+OptionSetStatus Stopping Kazaa and associated programs
+ProcessKill \Save.exe|1
+ProcessKill \bulldownload.exe|1
+ProcessKill \kazaa.exe
+OptionPauseNow 2000
+
+# Folders
+OptionSetStatus Deleting Kazaa and associated files
+FolderDelete %PROGRAMFILES%\InstallShield Installation Information\{FA89A7AC-EABF-4D73-B19F-0C3D858D24EF}
+FolderDelete %PROGRAMFILES%\Kazaa
+FolderDelete %PROGRAMFILES%\Save
+FolderDelete %PROGRAMS%\Kazaa Media Desktop
+FolderDelete %TEMPDIR%\Adware
+FolderDelete %TEMPDIR%\BullGuard
+
+# Files not covered by above
+FileDelete %WINDIR%\earnmoney.ico
+FileDelete %WINDIR%\matchnet.ico
+FileDelete %WINDIR%\netflix.ico
+FileDelete %WINDIR%\readme.ico
+FileDelete %WINDIR%\readme.txt
+FileDelete %WINDIR%\shop.ico
+FileDelete %WINDIR%\tiscali_it_2.ico
+FileDelete %QUICKLAUNCH%\Launch Kazaa Media Desktop.lnk
+FileDelete %DESKTOP%\Kazaa Media Desktop.lnk
+FileDelete %DESKTOP%\Kazaa Shop.url
+FileDelete %DESKTOP%\My Shared Folder.url
+FileDelete %SYSDIR%\cd_clint.dll
+FileDelete %SYSDIR%\cd_htm.dll
+FileDelete %TEMPDIR%\kmdb.html
+
+# Registry keys
+OptionSetStatus Deleting Kazaa and associated Registry keys
+RegDeleteKey HKCU\Software\Cydoor
+RegDeleteKey HKCU\Software\Cydoor Services
+RegDeleteKey HKCU\Software\Kazaa
+RegDeleteKey HKLM\Software\Cydoor
+RegDeleteKey HKLM\Software\KAZAA
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\App Paths\D:
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\{FA89A7AC-EABF-4D73-B19F-0C3D858D24EF}
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\SaveNow
+RegDeleteKey HKLM\Software\Sharman Networks Ltd
+RegDeleteKey HKLM\Software\WhenUSave
+
+# Registry values not covered by above
+RegDelValue HKCU\Software\Microsoft\Windows\CurrentVersion\Runonce|BullguardoptIn
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|KAZAA
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|WhenUSave

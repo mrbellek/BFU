@@ -1,0 +1,75 @@
+# Kazaa v2.5.1 uninstall script
+# BFU - Brute Force Uninstaller
+
+OptionStatusOn
+OptionSetStatus Initializing
+OptionUseBitBucket
+
+SystemMsgBox This will uninstall Kazaa 2.5.1 and all of its bundled software.\nPlease close Kazaa before continuing.\n\nNote that your 'My Shared Folder' will be deleted unless you changed its location from the default setting!
+
+# Processes
+OptionSetStatus Stopping Kazaa and associated programs
+ProcessKill \Altnet\adm.exe|1
+ProcessKill \bulldownload.exe|1
+ProcessKill \kazaa.exe
+OptionPauseNow 2000
+
+# Folders
+OptionSetStatus Deleting Kazaa and associated files
+FolderDelete %PROGRAMFILES%\Altnet
+FolderDelete %PROGRAMFILES%\InstallShield Installation Information\{4C560D9B-BEA0-4098-ADE2-28576DF8CA8B}
+FolderDelete %PROGRAMFILES%\Kazaa
+FolderDelete %PROGRAMS%\Kazaa Media Desktop
+FolderDelete %TEMPDIR%\Altnet
+FolderDelete %TEMPDIR%\BullGuard
+
+# Files not covered by above
+FileDelete %WINDIR%\Readme.txt
+FileDelete %QUICKLAUNCH%\Launch Kazaa Media Desktop.lnk
+FileDelete %DESKTOP%\Kazaa Media Desktop.lnk
+FileDelete %DESKTOP%\Kazaa Promotions.url
+FileDelete %DESKTOP%\My Shared Folder.url
+FileDelete %SYSDIR%\cd_clint.dll
+FileDelete %SYSDIR%\cd_htm.dll
+FileDelete %TEMPDIR%\kmdb.html
+FileDelete %TEMPDIR%\matchnet.ico
+FileDelete %TEMPDIR%\netflix.ico
+FileDelete %TEMPDIR%\readme.ico
+FileDelete %TEMPDIR%\readme.txt
+FileDelete %TEMPDIR%\shop.ico
+FileDelete %TEMPDIR%\tiscali_it_2.ico
+
+# Registry keys
+OptionSetStatus Deleting Kazaa and associated Registry keys
+RegDeleteKey HKCU\Software\Cydoor
+RegDeleteKey HKCU\Software\Cydoor Services
+RegDeleteKey HKCU\Software\Kazaa
+RegDeleteKey HKCR\Interface\{0E67BBC9-18CB-4B22-BACD-687CDF6387B6}
+RegDeleteKey HKCR\Interface\{1169A235-14D9-4488-8B56-58ECE9C57002}
+RegDeleteKey HKCR\Interface\{16344B6E-52E1-4BBC-AA79-E08B10B7BAB9}
+RegDeleteKey HKCR\Interface\{1ED19966-1493-4539-B9F5-97A6556CE8F8}
+RegDeleteKey HKCR\Interface\{21D98482-146C-4EBF-AF1E-B04395110005}
+RegDeleteKey HKCR\Interface\{4C5C8B37-CCB7-11D5-ABEC-00B0D0238DF5}
+RegDeleteKey HKCR\Interface\{4E26CAD5-1B59-4D1D-9063-2D91314C9E45}
+RegDeleteKey HKCR\Interface\{5469EE67-1493-402F-8E2C-99936C9E4983}
+RegDeleteKey HKCR\Interface\{6FFDEFD7-3EC4-4E5A-9EFC-AD04E14A9934}
+RegDeleteKey HKCR\Interface\{7B288F47-79AB-43A8-8494-D9F4D5985B29}
+RegDeleteKey HKCR\Interface\{9BD0749C-12DC-4D2B-A4F6-9E52F0F38A6C}
+RegDeleteKey HKCR\Interface\{A36ECFBE-FAAA-417D-9D41-7FEF98FDE554}
+RegDeleteKey HKCR\Interface\{A74C06E4-12DF-4060-9AA7-83CFAA66D604}
+RegDeleteKey HKCR\Interface\{B4D3EAE5-8A3A-4376-8B65-6A81293EDB1D}
+RegDeleteKey HKCR\Interface\{C4143914-2238-40F8-A74C-67C4B8ACB27A}
+RegDeleteKey HKCR\Interface\{D2A3A842-FBA3-49D4-8806-7734716364A2}
+RegDeleteKey HKCR\Interface\{E3CD7A86-04E4-4B47-88E8-3EE03A3DEE56}
+RegDeleteKey HKCR\Interface\{ECBE1E54-3649-4287-9888-D9FB133CAE0D}
+RegDeleteKey HKCR\TypeLib\{94636247-BC39-4B8B-A728-2D1FBEBFA76A}
+RegDeleteKey HKLM\Software\Altnet
+RegDeleteKey HKLM\Software\Cydoor
+RegDeleteKey HKLM\Software\KaZaA
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\App Paths\D:
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\{4C560D9B-BEA0-4098-ADE2-28576DF8CA8B}
+RegDeleteKey HKLM\Software\Sharman Networks Ltd
+
+# Registry values not covered by above
+RegDelValue HKCU\Software\Microsoft\Windows\CurrentVersion\Runonce|BullguardoptIn
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|KAZAA

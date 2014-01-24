@@ -1,0 +1,77 @@
+# Kazaa v1.7.0 uninstall script
+# BFU - Brute Force Uninstaller
+
+OptionStatusOn
+OptionSetStatus Initializing
+OptionUseBitBucket
+
+SystemMsgBox This will uninstall Kazaa 1.7.0 and all of its bundled software.\nPlease close Kazaa before continuing.\n\nNote that your 'My Shared Folder' will be deleted unless you changed its location from the default setting!
+
+# Processes
+OptionSetStatus Stopping Kazaa and associated programs
+ProcessKill \rundll32.exe|1
+ProcessKill \SaveNow.exe|1
+ProcessKill \WebInstall.exe|1
+ProcessKill \Brilliant\SETUP.EXE|1
+ProcessKill \kazaa.exe
+OptionPauseNow 2000
+
+# Folders
+OptionSetStatus Deleting Kazaa and associated files
+FolderDelete %PROGRAMFILES%\KaZaA
+FolderDelete %PROGRAMFILES%\SaveNow
+FolderDelete %WINDIR%\BDE
+FolderDelete %PROGRAMS%\KaZaA Media Desktop
+FolderDelete %TEMPDIR%\Adware
+FolderDelete %TEMPDIR%\BDECache
+FolderDelete %TEMPDIR%\Brilliant
+
+# Files not covered by above
+FileDelete %WINDIR%\newdotnet3_36.dll
+FileDelete %QUICKLAUNCH%\Kazaa Media Desktop.lnk
+FileDelete %DESKTOP%\Kazaa Media Desktop.lnk
+FileDelete %DESKTOP%\Kazaa Promotions.url
+FileDelete %DESKTOP%\My Shared Folder.lnk
+FileDelete %SYSDIR%\bdedata2.dll
+FileDelete %SYSDIR%\bdedownloader.dll
+FileDelete %SYSDIR%\bdefdi.dll
+FileDelete %SYSDIR%\bdeinsta25.dll
+FileDelete %SYSDIR%\cd_clint.dll
+FileDelete %SYSDIR%\cd_htm.dll
+FileDelete %TEMPDIR%\kmdb.html
+
+# Registry keys
+OptionSetStatus Deleting Kazaa and associated Registry keys
+RegDeleteKey HKCU\Software\Brilliant Digital Entertainment
+RegDeleteKey HKCU\Software\Cydoor
+RegDeleteKey HKCU\Software\Cydoor Services
+RegDeleteKey HKCU\Software\DownloadWare
+RegDeleteKey HKCU\Software\Kazaa
+RegDeleteKey HKCU\Software\WebInstall
+RegDeleteKey HKCR\BDESmartInstaller25.BDESmartInstaller25
+RegDeleteKey HKCR\BDESmartInstaller25.BDESmartInstaller25.1
+RegDeleteKey HKCR\CLSID\{3EEC42B5-FB94-40D3-A588-BB54B383A7CB}
+RegDeleteKey HKCR\Interface\{67925164-C4B6-11D2-B9C6-0000E84F59A6}
+RegDeleteKey HKCR\TypeLib\{82FC7881-AACC-11D2-B9C6-0000E842E40A}
+RegDeleteKey HKCR\WUSN.1
+RegDeleteKey HKLM\Software\Brilliant Digital Entertainment
+RegDeleteKey HKLM\Software\Cydoor
+RegDeleteKey HKLM\Software\DownloadWare
+RegDeleteKey HKLM\Software\KAZAA
+#RegDeleteKey HKLM\Software\Microsoft\DownloadManager - seems Windows XP related
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\bdeplayer
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\KaZaA Media Desktop_is1
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\New.net
+RegDeleteKey HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\SaveNow
+RegDeleteKey HKLM\Software\New.net
+RegDeleteKey HKLM\Software\WhenU
+
+# Registry values not covered by above
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|KAZAA
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|b3dupdate
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|SaveNow
+RegDelValue HKLM\Software\Microsoft\Windows\CurrentVersion\Run|WebInstall2
+
+# Winsock hooks
+OptionSetStatus Removing New.Net Winsock hooks
+WinsockKillNamespace New.net Name Space Provider

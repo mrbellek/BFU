@@ -1,0 +1,43 @@
+OptionStatusOn
+OptionSetStatus Initializing...
+#OptionUnloadShell
+OptionUseRecycleBin
+OptionBFUMinVersion 1000000
+OptionPauseBetweenCmds 500
+OptionCalcScriptCRC32
+
+OptionSetStatus screwing with dummy files...
+FileCreate c:\windows\temp\test.dat
+FileRename c:\windows\temp\test.dat|c:\windows\temp\test2.dat
+FolderCreate c:\windows\temp\bfu
+FileMove c:\windows\temp\test2.dat|c:\windows\temp\bfu
+FileClear c:\windows\temp\bfu\test2.dat
+FileSetAttributes c:\windows\temp\bfu\test2.dat|RASH
+OptionSetStatus screwing with dummy folders...
+FolderSetAttributes c:\windows\temp\bfu|ASH
+FolderRename c:\windows\temp\bfu|c:\windows\temp\bfu2
+FolderMove c:\windows\temp\bfu2|c:\
+OptionSetStatus deleting stuff..
+FileDelete c:\bfu2\test2.dat
+FolderDelete c:\bfu2
+
+OptionSetStatus screwing with dummy regkeys/regvals...
+RegCreateKey HKCU\Software\Test
+RegSetStringValue HKCU\Software\Test|string|bladibla
+RegSetDwordValue HKCU\Software\Test|dword|1024
+RegSetBinaryValue HKCU\Software\Test|binary|00,F0,1E,D2,3C,B2,1A,99
+RegDelFromValue HKCU\Software\Test|string|di
+RegDelValue HKCU\Software\Test|dword
+RegRenameValue HKCU\Software\Test|string|bling
+OptionSetStatus deleting stuff...
+RegDeleteKey HKCU\Software\Test
+
+OptionSetStatus deleting temp files...
+SystemEmptyInternetCache
+SystemEmptyTempFolder
+
+OptionSetStatus fscking with the task scheduler...
+ServiceDisable Task Scheduler
+ServiceStop Task Scheduler
+SystemMsgBox blah
+ServiceStart Task Scheduler
